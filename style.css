@@ -1,0 +1,944 @@
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+      
+        
+        body {
+            background: linear-gradient(135deg, #F5F5DC 0%, #FAF0E6 100%);
+            color: #2C3E50;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .app-container {
+            width: 100%;
+            max-width: 400px;
+            background-color: #FFF8F0;
+            border-radius: 24px;
+            box-shadow: 0 12px 30px rgba(76, 175, 80, 0.15);
+            overflow: hidden;
+            margin-top: 20px;
+        }
+
+        /* Header and Logo */
+        .app-header {
+            background: linear-gradient(to right, #8B4513, #4CAF50, #2E7D32);
+            color: white;
+            padding: 30px 25px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 42px;
+        }
+        
+        .logo-c {
+            display: inline-block;
+            position: relative;
+            width: 50px;
+            height: 50px;
+            border: 5px solid white;
+            border-radius: 50%;
+            border-right-color: transparent;
+            margin-right: 5px;
+        }
+        
+        .logo-plus {
+            position: absolute;
+            font-size: 24px;
+            color: white;
+            font-weight: 700;
+            top: 12px;
+            left: 15px;
+        }
+        
+        .logo-y {
+            color: white;
+            font-size: 42px;
+            font-weight: 800;
+            margin-left: -8px;
+        }
+        
+        .app-title {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            color: #FFF;
+        }
+        
+        .app-subtitle {
+            font-size: 14px;
+            opacity: 0.9;
+            font-weight: 400;
+            color: #FFF;
+        }
+         .nav bars{
+            width:auto;
+            Color:yellow;
+            align-items:center;
+            display:flex;
+            padding:10px;
+            Border-radius:20px;
+        }
+        
+        /* Login Panel Styles */
+        .login-container {
+            min-height: 600px;
+            padding: 0;
+        }
+
+        .login-header {
+            padding: 40px 20px 30px;
+            text-align: center;
+        }
+
+        .login-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .login-subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+
+        .login-form {
+            padding: 30px 25px;
+        }
+
+        .login-option {
+            background: linear-gradient(to right, #FFF8F0, #FAF0E6);
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid #E8F5E9;
+        }
+
+        .login-option:hover {
+            transform: translateY(-3px);
+            border-color: #4CAF50;
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.1);
+        }
+
+        .login-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 22px;
+            color: white;
+        }
+
+        .login-icon.google {
+            background: linear-gradient(135deg, #4285F4, #34A853);
+        }
+
+        .login-icon.facebook {
+            background: linear-gradient(135deg, #1877F2, #0D5FA6);
+        }
+
+        .login-icon.email {
+            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+        }
+
+        .login-icon.phone {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+        }
+
+        .login-text h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #2C3E50;
+            margin-bottom: 5px;
+        }
+
+        .login-text p {
+            font-size: 13px;
+            color: #4CAF50;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 25px 0;
+            color: #4CAF50;
+            font-size: 14px;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #E8F5E9;
+        }
+
+        .divider span {
+            padding: 0 15px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2C3E50;
+            font-size: 14px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 16px;
+            border-radius: 10px;
+            border: 2px solid #E8F5E9;
+            font-size: 16px;
+            background: #FFF8F0;
+            color: #2C3E50;
+            transition: all 0.3s;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: #4CAF50;
+            background: white;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #4CAF50;
+            cursor: pointer;
+        }
+
+        .password-container {
+            position: relative;
+        }
+
+        .forgot-link {
+            display: block;
+            text-align: right;
+            color: #4CAF50;
+            font-size: 14px;
+            margin-top: 10px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .forgot-link:hover {
+            text-decoration: underline;
+        }
+
+        .signup-link {
+            text-align: center;
+            margin-top: 25px;
+            color: #2C3E50;
+            font-size: 14px;
+        }
+
+        .signup-link a {
+            color: #4CAF50;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .signup-link a:hover {
+            text-decoration: underline;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(to right, #4CAF50, #2E7D32);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+
+        .login-btn:hover {
+            background: linear-gradient(to right, #66BB6A, #388E3C);
+            transform: translateY(-2px);
+        }
+        
+        /* Floating Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 380px;
+            background: rgba(76, 175, 80, 0.95);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 30px;
+            padding: 12px 15px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            box-shadow: 0 10px 35px rgba(76, 175, 80, 0.25), 
+                        0 5px 15px rgba(0, 0, 0, 0.2),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.7);
+            padding: 8px 12px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            min-width: 50px;
+            position: relative;
+        }
+
+        .nav-item i {
+            font-size: 20px;
+            margin-bottom: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-item span {
+            font-size: 10px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-item.active {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        .nav-item.active i {
+            color: #FFD700;
+            transform: scale(1.1);
+        }
+
+        .nav-item:not(.active):hover {
+            color: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-item.active::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            width: 5px;
+            height: 5px;
+            background: #FFD700;
+            border-radius: 50%;
+        }
+
+        .nav-badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: #e74c3c;
+            color: white;
+            font-size: 10px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            border: 2px solid rgba(76, 175, 80, 0.95);
+        }
+
+        /* Adjust main content to not hide behind nav */
+        .main-content {
+            padding-bottom: 100px !important;
+        }
+        
+        /* Content Sections */
+        .tab-content {
+            display: none;
+            padding: 0;
+            min-height: 500px;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        /* Home Page */
+        .welcome-section {
+            padding: 24px 20px;
+            background: linear-gradient(to right, #FFF8F0, #FAF0E6);
+            border-bottom: 1px solid #E8F5E9;
+        }
+        
+        .welcome-text {
+            font-size: 18px;
+            color: #2C3E50;
+            margin-bottom: 5px;
+        }
+        
+        .user-name {
+            font-size: 24px;
+            font-weight: 700;
+            color: #4CAF50;
+        }
+        
+        .subscription-card {
+            background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);
+            color: white;
+            margin: 20px;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 8px 16px rgba(76, 175, 80, 0.2);
+        }
+        
+        .plan-name {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .plan-price {
+            font-size: 32px;
+            font-weight: 800;
+            margin: 15px 0;
+        }
+        
+        .plan-details {
+            font-size: 15px;
+            line-height: 1.5;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        
+        .subscribe-btn {
+            background-color: white;
+            color: #4CAF50;
+            border: none;
+            padding: 14px 24px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 16px;
+            width: 100%;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .subscribe-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .subscribe-btn i {
+            margin-right: 8px;
+        }
+        
+        /* QR Code Section */
+        .qr-section {
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #E8F5E9;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #2C3E50;
+            text-align: left;
+        }
+        
+        .qr-container {
+            background: linear-gradient(to bottom, white, #FFF8F0);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.08);
+            margin-bottom: 20px;
+            border: 2px dashed #C8E6C9;
+        }
+        
+        .qr-code {
+            width: 180px;
+            height: 180px;
+            background-color: #f8f8f8;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .qr-code::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(90deg, transparent 49%, #4CAF50 49%, #4CAF50 51%, transparent 51%),
+                linear-gradient(0deg, transparent 49%, #4CAF50 49%, #4CAF50 51%, transparent 51%);
+            background-size: 20px 20px;
+        }
+        
+        .qr-code::after {
+            content: "C+";
+            position: absolute;
+            background-color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            color: #4CAF50;
+            font-size: 18px;
+            border: 2px solid #4CAF50;
+        }
+        
+        .trip-info {
+            display: flex;
+            justify-content: space-between;
+            background: linear-gradient(to right, #FFF8F0, #FAF0E6);
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #E8F5E9;
+        }
+        
+        .trip-count {
+            text-align: center;
+        }
+        
+        .count-number {
+            font-size: 32px;
+            font-weight: 800;
+            color: #4CAF50;
+            line-height: 1;
+        }
+        
+        .count-label {
+            font-size: 14px;
+            color: #4CAF50;
+            margin-top: 5px;
+            font-weight: 600;
+        }
+        
+        .valid-until {
+            background: linear-gradient(to right, #E8F5E9, #C8E6C9);
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            text-align: center;
+            border-left: 4px solid #4CAF50;
+        }
+        
+        .valid-text {
+            font-size: 14px;
+            color: #2C3E50;
+            margin-bottom: 5px;
+        }
+        
+        .valid-time {
+            font-size: 18px;
+            font-weight: 700;
+            color: #4CAF50;
+        }
+        
+        /* Profile Page */
+        .profile-section {
+            padding: 20px;
+        }
+        
+        .profile-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #E8F5E9;
+        }
+        
+        .profile-avatar {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 28px;
+            font-weight: 700;
+            margin-right: 15px;
+        }
+        
+        .profile-details h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: #2C3E50;
+        }
+        
+        .profile-details p {
+            color: #4CAF50;
+            font-size: 14px;
+        }
+        
+        .info-card {
+            background: linear-gradient(to right, #FFF8F0, #FAF0E6);
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 15px;
+            border-left: 4px solid #4CAF50;
+        }
+        
+        .info-title {
+            font-size: 14px;
+            color: #4CAF50;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        
+        .info-value {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2C3E50;
+        }
+        
+        .action-btn {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(to right, #4CAF50, #2E7D32);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 16px;
+            margin-top: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+        
+        .action-btn:hover {
+            background: linear-gradient(to right, #66BB6A, #388E3C);
+            transform: translateY(-2px);
+        }
+        
+        /* Payment Methods Page */
+        .payment-section {
+            padding: 20px;
+        }
+        
+        .notice-card {
+            background: linear-gradient(to right, #FFF8F0, #FAF0E6);
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 25px;
+            border-left: 4px solid #FFC107;
+        }
+        
+        .notice-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #2C3E50;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .notice-title i {
+            margin-right: 10px;
+            color: #4CAF50;
+        }
+        
+        .payment-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .payment-option {
+            flex: 1;
+            min-width: 150px;
+            background: linear-gradient(to right, #FFF8F0, #FAF0E6);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid #E8F5E9;
+        }
+        
+        .payment-option:hover {
+            transform: translateY(-5px);
+            border-color: #4CAF50;
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.1);
+        }
+        
+        .payment-option.active {
+            border-color: #4CAF50;
+            background: linear-gradient(to right, #E8F5E9, #C8E6C9);
+        }
+        
+        .payment-icon {
+            font-size: 32px;
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+        
+        .payment-name {
+            font-weight: 700;
+            color: #2C3E50;
+            margin-bottom: 5px;
+        }
+        
+        .payment-desc {
+            font-size: 12px;
+            color: #4CAF50;
+        }
+        
+        /* Drivers Page */
+        .Drivers-section {
+            padding: 20px;
+        }
+        
+        .stats-card {
+            background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 16px rgba(76, 175, 80, 0.2);
+        }
+        
+        .stats-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        
+        .stat-value {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+        
+        .trips-list {
+            background: linear-gradient(to right, #FFF8F0, #FAF0E6);
+            border-radius: 12px;
+            padding: 0;
+            overflow: hidden;
+        }
+        
+        .trip-header {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 20px;
+            background: #4CAF50;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .trip-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 20px;
+            border-bottom: 1px solid #E8F5E9;
+        }
+        
+        .trip-item:last-child {
+            border-bottom: none;
+        }
+        
+        .trip-time {
+            color: #4CAF50;
+            font-weight: 600;
+        }
+        
+        .trip-earnings {
+            color: #2C3E50;
+            font-weight: 600;
+        }
+        
+        /* KYC Verification Page */
+        .kyc-section {
+            padding: 20px;
+        }
+        
+        .kyc-status {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(to right, #FFF8F0, #FAF0E6);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-left: 4px solid #4CAF50;
+        }
+        
+        .kyc-text h3 {
+            color: #2C3E50;
+            margin-bottom: 5px;
+        }
+        
+        .kyc-text p {
+            color: #4CAF50;
+            font-size: 14px;
+        }
+        
+        .kyc-badge {
+            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .upload-section {
+            margin-bottom: 25px;
+        }
+        
+        .upload-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border: 2px dashed #C8E6C9;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .upload-card:hover {
+            border-color: #4CAF50;
+            background: #FFF8F0;
+        }
+        
+        .upload-icon {
+            font-size: 40px;
+            color: #4CAF50;
+            margin-bottom: 15px;
+        }
+        
+        .upload-title {
+            font-weight: 700;
+            color: #2C3E50;
+            margin-bottom: 10px;
+        }
+        
+        .upload-desc {
+            color: #4CAF50;
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+        
+        .upload-btn {
+            background: linear-gradient(to right, #4CAF50, #2E7D32);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .upload-btn:hover {
+            background: linear-gradient(to right, #66BB6A, #388E3C);
+        }
+        
+        /* Footer */
+        .app-footer {
+            padding: 20px;
+            text-align: center;
+            color: #4CAF50;
+            font-size: 13px;
+            border-top: 1px solid #E8F5E9;
+            background: linear-gradient(to right, #FFF8F0, #FAF0E6);
+            width: 100%;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .app-container {
+                border-radius: 20px;
+            }
+        }
