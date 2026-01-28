@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City Plus - Your Urban Connection</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+      <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- App Header with Logo -->
+        <div class="app-header">
+            <div class="logo-container">
+                <div class="logo">
+                    <div class="logo-">
+                        <span class="logo-plus"></span>
+                    </div>
+                    <span class="logo-"></span>
+                </div>
+            </div>
+            <h1 class="login-title">Cityplus</h1>
+            <p class="login-subtitle">CITY SHUTTLE - Your Urban Connection</p>
+        </div>
+        
+        <!-- LOGIN PANEL (Shows First) -->
+        <div id="login-panel" class="login-container">
+            <div class="login-form">
+                <div class="login-option" id="google-login">
+                    <div class="login-icon google">
+                        <i class="fab fa-google"></i>
+                    </div>
+                    <div class="login-text">
+                        <h3>Continue with Google</h3>
+                        <p>Sign in with your Google account</p>
+                    </div>
+                </div>
+                
+                <div class="login-option" id="facebook-login">
+                    <div class="login-icon facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </div>
+                    <div class="login-text">
+                        <h3>Continue with Facebook</h3>
+                        <p>Sign in with your Facebook account</p>
+                    </div>
+                </div>
+                
+                <div class="divider">
+                    <span>Or sign in with</span>
+                </div>
+                
+                <div class="login-option" id="email-login">
+                    <div class="login-icon email">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="login-text">
+                        <h3>Sign in with Email</h3>
+                        <p>Use your email address</p>
+                    </div>
+                </div>
+                
+                <div class="login-option" id="phone-login">
+                    <div class="login-icon phone">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <div class="login-text">
+                        <h3>Sign in with Phone</h3>
+                        <p>Use your mobile number</p>
+                    </div>
+                </div>
+                
+                <!-- Email Login Form (Hidden by default) -->
+                <div id="email-form" style="display: none;">
+                    <div class="input-group">
+                        <label class="input-label">Email Address</label>
+                        <input type="email" class="input-field" id="email-input" placeholder="Enter your email">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label class="input-label">Password</label>
+                        <div class="password-container">
+                            <input type="password" class="input-field" id="password-input" placeholder="Enter your password">
+                            <button class="password-toggle" id="toggle-password">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <a href="#" class="forgot-link">Forgot Password?</a>
+                    </div>
+                    
+                    <button class="login-btn" id="email-submit">Sign In</button>
+                    <button class="login-btn" id="back-to-options" style="background: linear-gradient(to right, #6c757d, #495057); margin-top: 10px;">
+                        <i class="fas fa-arrow-left"></i> Back to Options
+                    </button>
+                </div>
+                
+                <!-- Phone Login Form (Hidden by default) -->
+                <div id="phone-form" style="display: none;">
+                    <div class="input-group">
+                        <label class="input-label">Phone Number</label>
+                        <input type="tel" class="input-field" id="phone-input" placeholder="Enter your phone number">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label class="input-label">Password</label>
+                        <div class="password-container">
+                            <input type="password" class="input-field" id="phone-password" placeholder="Enter your password">
+                            <button class="password-toggle" id="toggle-phone-password">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <a href="#" class="forgot-link">Forgot Password?</a>
+                    </div>
+                    
+                    <button class="login-btn" id="phone-submit">Sign In</button>
+                    <button class="login-btn" id="back-to-options-phone" style="background: linear-gradient(to right, #6c757d, #495057); margin-top: 10px;">
+                        <i class="fas fa-arrow-left"></i> Back to Options
+                    </button>
+                </div>
+                
+                <div class="signup-link">
+                    Don't have an account? <a href="#" id="signup-link">Sign up</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- MAIN APP CONTENT (Hidden initially, shown after login) -->
+         
+        <nav class="nav">
+            <div id="nav bars" ><ul><li> qr code</li></ul>
+            <ul><li>Drivers </li></ul>
+            <ul><li>payment </li></ul>
+            <ul><li> kyc Vericafication</li></ul></div>
+            
+
+        </nav>
+        <div id="main-app" class="main-content" style="display: none;">
+            <!-- Home Tab -->
+            <div id="home" class="tab-content active">
+                <div class="welcome-section">
+                     <div class="welcome-text">Welcome back,</div>
+                    <div class="user-name">kimathi ian</div>
+                </div>
+                
+                <div class="subscription-card">
+                    <div class="plan-name">
+                        Monthly Pass
+                        <span><i class="fas fa-crown"></i></span>
+                    </div>
+                    <div class="plan-price">ksh 4,000</div>
+                    <div class="plan-details">
+                        Unlimited shuttle rides for 30 days. Generate a daily QR code valid for up to 2 trips per day. Access to premium shuttles and priority boarding.
+                    </div>
+                    <button class="subscribe-btn">
+                        <i class="fas fa-sync-alt"></i> Renew Subscription
+                    </button>
+                </div>
+                
+                <div class="qr-section">
+                    <div class="section-title">Today's QR Code</div>
+                    <div class="qr-container">
+                        <div class="qr-code"></div>
+                        <p>Scan this code at the shuttle</p>
+                    </div>
+                    
+                    <div class="trip-info">
+                        <div class="trip-count">
+                            <div class="count-number">2</div>
+                            <div class="count-label">Daily Trips</div>
+                        </div>
+                        <div class="trip-count">
+                            <div class="count-number">1</div>
+                            <div class="count-label">Used Today</div>
+                        </div>
+                    </div>
+                    
+                    <div class="valid-until">
+                        <div class="valid-text">Valid until</div>
+                        <div class="valid-time">11:59 PM Today</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- QR Code Tab -->
+            <div id="qrcode" class="tab-content">
+                <div class="welcome-section">
+                    <div class="welcome-text">Your Boarding Pass</div>
+                    <div class="user-name">Ticket ID: XZY-123-ABC</div>
+                </div>
+                
+                <div class="qr-section">
+                    <div class="qr-container">
+                        <div class="qr-code"></div>
+                        <p>Present this screen to the driver/attendant for scanning</p>
+                    </div>
+                    
+                    <div class="valid-until" style="margin-top: 20px;">
+                        <div class="valid-text">Valid for:</div>
+                        <div class="valid-time">07:58 AM - 8.30 AM</div>
+                    </div>
+                    
+                    <div class="trip-info">
+                        <div class="trip-count">
+                            <div class="count-number"> Ian Kimathi</div>
+                            <div class="count-label">Passenger Name</div>
+                        </div>
+                    </div>
+                    
+                    <p style="text-align: center; color: #4CAF50; font-size: 14px; margin-top: 20px; padding: 0 10px;">
+                        <i class="fas fa-info-circle"></i> This QR code resets daily at midnight. Maximum 2 trips per day.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Drivers Tab -->
+            <div id="Drivers" class="tab-content">
+                <div class="Drivers-section">
+                    <div class="stats-card">
+                        <div class="stats-title">Today's Driver Stats</div>
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <div class="stat-value">12</div>
+                                <div class="stat-label">Total Trips</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">8</div>
+                                <div class="stat-label">Completed</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">3</div>
+                                <div class="stat-label">In Progress</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">$420</div>
+                                <div class="stat-label">Earnings</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="section-title">Recent Trips</div>
+                    <div class="trips-list">
+                        <div class="trip-header">
+                            <div>Trip Time</div>
+                            <div>Earnings</div>
+                        </div>
+                        
+                        <div class="trip-item">
+                            <div class="trip-time">08:30 AM</div>
+                            <div class="trip-earnings">Ksh 1500</div>
+                        </div>
+                        
+                        <div class="trip-item">
+                            <div class="trip-time">09:15 AM</div>
+                            <div class="trip-earnings">Ksh 1200</div>
+                        </div>
+                        
+                        <div class="trip-item">
+                            <div class="trip-time">10:45 AM</div>
+                            <div class="trip-earnings">Ksh 2000</div>
+                        </div>
+                        
+                        <div class="trip-item">
+                            <div class="trip-time">12:30 PM</div>
+                            <div class="trip-earnings">Ksh 1400</div>
+                        </div>
+                        
+                        <div class="trip-item">
+                            <div class="trip-time">02:15 PM</div>
+                            <div class="trip-earnings">Ksh 1800</div>
+                        </div>
+                    </div>
+                    
+                    <button class="action-btn" style="margin-top: 20px;">
+                        <i class="fas fa-file-alt"></i> View Detailed Report
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Payment Methods Tab -->
+            <div id="payment" class="tab-content">
+                <div class="payment-section">
+                    <div class="notice-card">
+                        <div class="notice-title">
+                            <i class="fas fa-exclamation-circle"></i>
+                            Before you proceed
+                        </div>
+                        <p style="color: #2C3E50;">Select your preferred payment method to complete your subscription or trip payment.</p>
+                    </div>
+                    
+                    <div class="section-title">Payment Methods</div>
+                    
+                    <div class="payment-options">
+                        <div class="payment-option active" data-payment="mpesa">
+                            <div class="payment-icon">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <div class="payment-name">M-Pesa</div>
+                            <div class="payment-desc">Mobile Money</div>
+                        </div>
+                        
+                        <div class="payment-option" data-payment="card">
+                            <div class="payment-icon">
+                                <i class="far fa-credit-card"></i>
+                            </div>
+                            <div class="payment-name">Card</div>
+                            <div class="payment-desc">Credit/Debit Card</div>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-options">
+                        <div class="payment-option" data-payment="applepay">
+                            <div class="payment-icon">
+                                <i class="fab fa-apple"></i>
+                            </div>
+                            <div class="payment-name">Apple Pay</div>
+                            <div class="payment-desc">Apple Wallet</div>
+                        </div>
+                        
+                        <div class="payment-option" data-payment="mobilepay">
+                            <div class="payment-icon">
+                                <i class="fas fa-wallet"></i>
+                            </div>
+                            <div class="payment-name">Mobile Pay</div>
+                            <div class="payment-desc">Digital Wallet</div>
+                        </div>
+                    </div>
+                    
+                    <div class="info-card" style="margin-top: 20px;">
+                        <div class="info-title">Selected Payment Method</div>
+                        <div class="info-value">M-Pesa •••• 2547</div>
+                    </div>
+                    
+                    <button class="action-btn" style="margin-top: 20px;">
+                        <i class="fas fa-lock"></i> Secure Payment
+                    </button>
+                </div>
+            </div>
+            
+            <!-- KYC Verification Tab -->
+            <div id="kyc" class="tab-content">
+                <div class="kyc-section">
+                    <div class="kyc-status">
+                        <div class="kyc-text">
+                            <h3>KYC Verification</h3>
+                            <p>Secure your account to unlock full features</p>
+                        </div>
+                        <div class="kyc-badge">Pending</div>
+                    </div>
+                    
+                    <div class="section-title">Identity Document</div>
+                    
+                    <div class="upload-section">
+                        <div class="upload-card">
+                            <div class="upload-icon">
+                                <i class="fas fa-id-card"></i>
+                            </div>
+                            <div class="upload-title">Upload Front ID</div>
+                            <div class="upload-desc">Government issued ID (Front side)</div>
+                            <button class="upload-btn">Upload File</button>
+                        </div>
+                        
+                        <div class="upload-card">
+                            <div class="upload-icon">
+                                <i class="fas fa-id-card"></i>
+                            </div>
+                            <div class="upload-title">Upload Back ID</div>
+                            <div class="upload-desc">Government issued ID (Back side)</div>
+                            <button class="upload-btn">Upload File</button>
+                        </div>
+                    </div>
+                    
+                    <div class="section-title">Live Selfie</div>
+                    
+                    <div class="upload-card">
+                        <div class="upload-icon">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <div class="upload-title">Take a live photo for verification</div>
+                        <div class="upload-desc">Ensure good lighting and face the camera directly</div>
+                        <button class="upload-btn">Take Photo</button>
+                    </div>
+                    
+                    <button class="action-btn" style="margin-top: 20px;">
+                        <i class="fas fa-paper-plane"></i> Submit for Verification
+                    </button>
+                    
+                    <p style="text-align: center; color: #4CAF50; font-size: 13px; margin-top: 15px;">
+                        <i class="fas fa-clock"></i> Verification usually takes 1 to 3 minutes
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Profile Tab -->
+            <div id="profile" class="tab-content">
+                <div class="profile-section">
+                    <div class="profile-info">
+                        <div class="profile-avatar">JD</div>
+                        <div class="profile-details">
+                            <h3>John S. Doe</h3>
+                            <p>kimathi@gmail.com</p>
+                            <p>Premium Member since Jan 2023</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-card">
+                        <div class="info-title">Current Subscription</div>
+                        <div class="info-value">Monthly Pass - $4,000</div>
+                    </div>
+                    
+                    <div class="info-card">
+                        <div class="info-title">Next Billing Date</div>
+                        <div class="info-value">15/12/2023</div>
+                    </div>
+                    
+                    <div class="info-card">
+                        <div class="info-title">Daily Trips Remaining</div>
+                        <div class="info-value">1 out of 2 trips</div>
+                    </div>
+                    
+                    <div class="info-card">
+                        <div class="info-title">KYC Status</div>
+                        <div class="info-value">Pending Verification</div>
+                    </div>
+                    
+                    <button class="action-btn">
+                        <i class="fas fa-cog"></i> Account Settings
+                    </button>
+                    
+                    <button class="action-btn" style="background: linear-gradient(to right, #FFF8F0, #FAF0E6); color: #4CAF50; border: 2px solid #4CAF50;">
+                        <i class="fas fa-question-circle"></i> Help & Support
+                    </button>
+                </div>
+            </div>
+            
+            <!-- App Footer -->
+            <div class="app-footer">
+                <p>CITY SHUTTLE &copy; 2023 | Your Urban Connection</p>
+                <p style="margin-top: 5px; font-size: 12px;">City Plus v2.1.4</p>
+            </div>
+        </div>
+        
+        <!-- Floating Bottom Navigation (Initially hidden, shown after login) -->
+        <div id="bottom-navigation" style="display: none;">
+            <nav class="bottom-nav">
+                <a href="#" class="nav-item active" data-tab="home">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="#" class="nav-item" data-tab="qrcode">
+                    <i class="fas fa-qrcode"></i>
+                    <span>QR Code</span>
+                </a>
+                <a href="#" class="nav-item" data-tab="drivers">
+                    <i class="fas fa-car"></i>
+                    <span>Drivers</span>
+                </a>
+                <a href="#" class="nav-item" data-tab="payment">
+                    <i class="fas fa-credit-card"></i>
+                    <span>Payment</span>
+                </a>
+                <a href="#" class="nav-item" data-tab="kyc">
+                    <i class="fas fa-id-card"></i>
+                    <span>KYC</span>
+                    <span class="nav-badge">1</span>
+                </a>
+                <a href="#" class="nav-item" data-tab="profile">
+                    <i class="fas fa-user"></i>
+                    <span>Profile</span>
+                </a>
+            </nav>
+        </div>
+    </div>
+
+    <script>
+        // Login functionality
+        const loginPanel = document.getElementById('login-panel');
+        const mainApp = document.getElementById('main-app');
+        const emailForm = document.getElementById('email-form');
+        const phoneForm = document.getElementById('phone-form');
+        const loginOptions = document.querySelector('.login-form');
+        const bottomNav = document.getElementById('bottom-navigation');
+        
+        // Show email form
+        document.getElementById('email-login').addEventListener('click', function() {
+            loginOptions.style.display = 'none';
+            emailForm.style.display = 'block';
+        });
+        
+        // Show phone form
+        document.getElementById('phone-login').addEventListener('click', function() {
+            loginOptions.style.display = 'none';
+            phoneForm.style.display = 'block';
+        });
+        
+        // Back to options from email form
+        document.getElementById('back-to-options').addEventListener('click', function() {
+            emailForm.style.display = 'none';
+            loginOptions.style.display = 'block';
+        });
+        
+        // Back to options from phone form
+        document.getElementById('back-to-options-phone').addEventListener('click', function() {
+            phoneForm.style.display = 'none';
+            loginOptions.style.display = 'block';
+        });
+        
+        // Toggle password visibility
+        document.getElementById('toggle-password').addEventListener('click', function() {
+            const passwordInput = document.getElementById('password-input');
+            const icon = this.querySelector('i');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        });
+        
+        // Toggle phone password visibility
+        document.getElementById('toggle-phone-password').addEventListener('click', function() {
+            const passwordInput = document.getElementById('phone-password');
+            const icon = this.querySelector('i');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        });
+        
+        // Email login submit
+        document.getElementById('email-submit').addEventListener('click', function() {
+            const email = document.getElementById('email-input').value;
+            const password = document.getElementById('password-input').value;
+            
+            if (!email || !password) {
+                alert('Please enter both email and password');
+                return;
+            }
+            
+            // Show loading
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Signing In...';
+            this.disabled = true;
+            
+            // Simulate login process
+            setTimeout(() => {
+                // Successful login - show main app
+                loginPanel.style.display = 'none';
+                mainApp.style.display = 'block';
+                bottomNav.style.display = 'block';
+                
+                // Reset button
+                this.innerHTML = 'Sign In';
+                this.disabled = false;
+            }, 1500);
+        });
+        
+        // Phone login submit
+        document.getElementById('phone-submit').addEventListener('click', function() {
+            const phone = document.getElementById('phone-input').value;
+            const password = document.getElementById('phone-password').value;
+            
+            if (!phone || !password) {
+                alert('Please enter both phone number and password');
+                return;
+            }
+            
+            // Show loading
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Signing In...';
+            this.disabled = true;
+            
+            // Simulate login process
+            setTimeout(() => {
+                // Successful login - show main app
+                loginPanel.style.display = 'none';
+                mainApp.style.display = 'block';
+                bottomNav.style.display = 'block';
+                
+                // Reset button
+                this.innerHTML = 'Sign In';
+                this.disabled = false;
+            }, 1500);
+        });
+        
+        // Google login
+        document.getElementById('google-login').addEventListener('click', function() {
+            alert('Redirecting to Google authentication...');
+            // In real app, this would redirect to Google OAuth
+            
+            // Simulate login
+            setTimeout(() => {
+                loginPanel.style.display = 'none';
+                mainApp.style.display = 'block';
+                bottomNav.style.display = 'block';
+            }, 1000);
+        });
+        
+        // Facebook login
+        document.getElementById('facebook-login').addEventListener('click', function() {
+            alert('Redirecting to Facebook authentication...');
+            // In real app, this would redirect to Facebook OAuth
+            
+            // Simulate login
+            setTimeout(() => {
+                loginPanel.style.display = 'none';
+                mainApp.style.display = 'block';
+                bottomNav.style.display = 'block';
+            }, 1000);
+        });
+        
+        // Sign up link
+        document.getElementById('signup-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Redirecting to sign up page...');
+        });
+        
+        // Forgot password links
+        document.querySelectorAll('.forgot-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Password reset link will be sent to your email/phone');
+            });
+        });
+        
+        // Floating bottom navigation functionality
+        const navItems = document.querySelectorAll('.nav-item');
+
+        // Navigation item click handler
+        navItems.forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all items
+                navItems.forEach(nav => nav.classList.remove('active'));
+                
+                // Add active class to clicked item
+                this.classList.add('active');
+                
+                // Get tab ID
+                const tabId = this.getAttribute('data-tab');
+                
+                // Hide all tab contents
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+                
+                // Show corresponding tab content
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+        
+        // Payment method selection
+        document.querySelectorAll('.payment-option').forEach(option => {
+            option.addEventListener('click', function() {
+                // Remove active class from all payment options
+                document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('active'));
+                
+                // Add active class to clicked option
+                this.classList.add('active');
+                
+                // Update selected payment method display
+                const paymentName = this.querySelector('.payment-name').textContent;
+                document.querySelector('.info-value').textContent = `${paymentName} •••• 2547`;
+            });
+        });
+        
+        // Simulate QR code update
+        function updateQRCode() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+            document.querySelector('.valid-time').textContent = timeString;
+            
+            // Update trip count randomly for demo
+            const usedTrips = Math.floor(Math.random() * 3);
+            document.querySelector('.count-number:nth-child(2)').textContent = usedTrips;
+            
+            // Show message if all trips used
+            if (usedTrips >= 2) {
+                document.querySelector('.qr-section p').innerHTML = '<i class="fas fa-exclamation-circle"></i> Daily trip limit reached. New QR code available tomorrow.';
+                document.querySelector('.qr-section p').style.color = '#e74c3c';
+            }
+        }
+        
+        // Update driver stats
+        function updateDriverStats() {
+            const trips = Math.floor(Math.random() * 5) + 10;
+            const completed = Math.floor(trips * 0.7);
+            const inProgress = trips - completed;
+            const earnings = Math.floor(trips * 35);
+            
+            document.querySelector('.stat-value:nth-child(1)').textContent = trips;
+            document.querySelector('.stat-value:nth-child(2)').textContent = completed;
+            document.querySelector('.stat-value:nth-child(3)').textContent = inProgress;
+            document.querySelector('.stat-value:nth-child(4)').textContent = `$${earnings}`;
+        }
+        
+        // Update time every minute
+        setInterval(updateQRCode, 60000);
+        setInterval(updateDriverStats, 30000);
+        
+        // Initial updates
+        updateQRCode();
+        updateDriverStats();
+        
+        // Subscription button interaction
+        document.querySelector('.subscribe-btn').addEventListener('click', function() {
+            alert('Redirecting to payment gateway for Monthly Pass renewal...');
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+            this.disabled = true;
+            
+            // Simulate payment process
+            setTimeout(() => {
+                this.innerHTML = '<i class="fas fa-check"></i> Subscription Renewed!';
+                this.style.background = 'linear-gradient(to right, #2ecc71, #27ae60)';
+                this.style.color = 'white';
+                
+                // Reset button after 3 seconds
+                setTimeout(() => {
+                    this.innerHTML = '<i class="fas fa-sync-alt"></i> Renew Subscription';
+                    this.style.background = '';
+                    this.style.color = '';
+                    this.disabled = false;
+                }, 3000);
+            }, 2000);
+        });
+        
+        // KYC upload buttons
+        document.querySelectorAll('.upload-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const card = this.closest('.upload-card');
+                const title = card.querySelector('.upload-title').textContent;
+                alert(`Simulating ${title} upload...`);
+                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Uploading...';
+                this.disabled = true;
+                
+                setTimeout(() => {
+                    this.innerHTML = '<i class="fas fa-check"></i> Uploaded';
+                    this.style.background = 'linear-gradient(to right, #2ecc71, #27ae60)';
+                    
+                    setTimeout(() => {
+                        this.innerHTML = 'Upload File';
+                        this.style.background = '';
+                        this.disabled = false;
+                    }, 2000);
+                }, 1500);
+            });
+        });
+    </script>
+</body>
+</html>
