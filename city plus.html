@@ -3,27 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>City Plus - Your Urban Connection</title>
+    <title>CityPlus - Your Urban Connection</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-      <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body>
     <div class="app-container">
-        <!-- App Header with Logo -->
+        <!-- App Header -->
         <div class="app-header">
-            <div class="logo-container">
-                <div class="logo">
-                    <div class="logo-">
-                        <span class="logo-plus"></span>
-                    </div>
-                    <span class="logo-"></span>
-                </div>
-            </div>
-            <h1 class="login-title">Cityplus</h1>
-            <p class="login-subtitle">CITY SHUTTLE - Your Urban Connection</p>
+            <div class="logo">C+</div>
+            <h1 class="app-title">Cityplus</h1>
+            <p class="app-subtitle">CITY SHUTTLE - Your Urban Connection</p>
         </div>
         
-        <!-- LOGIN PANEL (Shows First) -->
+        <!-- Login Panel -->
         <div id="login-panel" class="login-container">
             <div class="login-form">
                 <div class="login-option" id="google-login">
@@ -70,7 +65,7 @@
                     </div>
                 </div>
                 
-                <!-- Email Login Form (Hidden by default) -->
+                <!-- Email Login Form -->
                 <div id="email-form" style="display: none;">
                     <div class="input-group">
                         <label class="input-label">Email Address</label>
@@ -94,7 +89,7 @@
                     </button>
                 </div>
                 
-                <!-- Phone Login Form (Hidden by default) -->
+                <!-- Phone Login Form -->
                 <div id="phone-form" style="display: none;">
                     <div class="input-group">
                         <label class="input-label">Phone Number</label>
@@ -124,22 +119,35 @@
             </div>
         </div>
         
-        <!-- MAIN APP CONTENT (Hidden initially, shown after login) -->
-         
-        <nav class="nav">
-            <div id="nav bars" ><ul><li> qr code</li></ul>
-            <ul><li>Drivers </li></ul>
-            <ul><li>payment </li></ul>
-            <ul><li> kyc Vericafication</li></ul></div>
-            
-
-        </nav>
+        <!-- Main App Content -->
         <div id="main-app" class="main-content" style="display: none;">
-            <!-- Home Tab -->
-            <div id="home" class="tab-content active">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <div class="app-info">
+                    <h1>Cityplus</h1>
+                    <p>Your Urban Connection</p>
+                </div>
+                <div class="top-icons">
+                    <div class="top-icon" onclick="showNotifications()">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">2</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Top Navigation -->
+            <div class="top-nav">
+                <button class="top-nav-btn active" onclick="showSection('home-content')">Home</button>
+                <button class="top-nav-btn" onclick="showSection('routes-content')">Routes</button>
+                <button class="top-nav-btn" onclick="showSection('payment-content')">Payment</button>
+                <button class="top-nav-btn" onclick="showSection('kyc-content')">KYC</button>
+            </div>
+            
+            <!-- Home Content -->
+            <div id="home-content" class="content-section active">
                 <div class="welcome-section">
-                     <div class="welcome-text">Welcome back,</div>
-                    <div class="user-name">kimathi ian</div>
+                    <div class="welcome-text">Welcome back,</div>
+                    <div class="user-name">John Doe</div>
                 </div>
                 
                 <div class="subscription-card">
@@ -147,290 +155,529 @@
                         Monthly Pass
                         <span><i class="fas fa-crown"></i></span>
                     </div>
-                    <div class="plan-price">ksh 4,000</div>
+                    <div class="plan-price">Ksh 4,000</div>
                     <div class="plan-details">
                         Unlimited shuttle rides for 30 days. Generate a daily QR code valid for up to 2 trips per day. Access to premium shuttles and priority boarding.
                     </div>
-                    <button class="subscribe-btn">
+                    <button class="action-btn" onclick="renewSubscription()">
                         <i class="fas fa-sync-alt"></i> Renew Subscription
                     </button>
                 </div>
                 
-                <div class="qr-section">
-                    <div class="section-title">Today's QR Code</div>
-                    <div class="qr-container">
-                        <div class="qr-code"></div>
-                        <p>Scan this code at the shuttle</p>
+                <div class="qr-container">
+                    <div id="qr-code" class="qr-display"></div>
+                    <p style="font-size: 16px; color: #2C3E50; margin-bottom: 5px;">
+                        Your Boarding Pass
+                    </p>
+                    <p style="font-size: 14px; color: #64748b;">
+                        Present QR code to the driver
+                    </p>
+                    <div style="margin-top: 15px; padding: 10px; background: #f0f4f8; border-radius: 8px; text-align: center;">
+                        <p style="font-size: 13px; color: #2C3E50; margin: 5px 0;">
+                            <i class="fas fa-clock"></i> Expires in: <span id="qr-countdown" style="font-weight: bold; color: #FF9800;">2:00:00</span>
+                        </p>
+                        <button id="refresh-qr" style="margin-top: 10px; padding: 8px 16px; background: linear-gradient(to right, #3b82f6, #2563eb); color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 12px;">
+                            <i class="fas fa-sync-alt"></i> Refresh QR Code
+                        </button>
                     </div>
-                    
-                    <div class="trip-info">
-                        <div class="trip-count">
-                            <div class="count-number">2</div>
-                            <div class="count-label">Daily Trips</div>
-                        </div>
-                        <div class="trip-count">
-                            <div class="count-number">1</div>
-                            <div class="count-label">Used Today</div>
-                        </div>
-                    </div>
-                    
-                    <div class="valid-until">
-                        <div class="valid-text">Valid until</div>
-                        <div class="valid-time">11:59 PM Today</div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- QR Code Tab -->
-            <div id="qrcode" class="tab-content">
-                <div class="welcome-section">
-                    <div class="welcome-text">Your Boarding Pass</div>
-                    <div class="user-name">Ticket ID: XZY-123-ABC</div>
                 </div>
                 
-                <div class="qr-section">
-                    <div class="qr-container">
-                        <div class="qr-code"></div>
-                        <p>Present this screen to the driver/attendant for scanning</p>
+                <div class="trip-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">2</div>
+                        <div class="stat-label">Daily Trips</div>
                     </div>
-                    
-                    <div class="valid-until" style="margin-top: 20px;">
-                        <div class="valid-text">Valid for:</div>
-                        <div class="valid-time">07:58 AM - 8.30 AM</div>
+                    <div class="stat-item">
+                        <div class="stat-number">1</div>
+                        <div class="stat-label">Used Today</div>
                     </div>
-                    
-                    <div class="trip-info">
-                        <div class="trip-count">
-                            <div class="count-number"> Ian Kimathi</div>
-                            <div class="count-label">Passenger Name</div>
-                        </div>
-                    </div>
-                    
-                    <p style="text-align: center; color: #4CAF50; font-size: 14px; margin-top: 20px; padding: 0 10px;">
-                        <i class="fas fa-info-circle"></i> This QR code resets daily at midnight. Maximum 2 trips per day.
-                    </p>
+                </div>
+                
+                <div class="valid-info">
+                    <div class="valid-text">Valid until</div>
+                    <div class="valid-time" id="valid-time">11:59 PM</div>
                 </div>
             </div>
             
-            <!-- Drivers Tab -->
-            <div id="Drivers" class="tab-content">
-                <div class="Drivers-section">
-                    <div class="stats-card">
-                        <div class="stats-title">Today's Driver Stats</div>
-                        <div class="stats-grid">
-                            <div class="stat-item">
-                                <div class="stat-value">12</div>
-                                <div class="stat-label">Total Trips</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-value">8</div>
-                                <div class="stat-label">Completed</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-value">3</div>
-                                <div class="stat-label">In Progress</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-value">$420</div>
-                                <div class="stat-label">Earnings</div>
-                            </div>
+            <!-- Payment Content -->
+            <div id="payment-content" class="content-section">
+                <div class="welcome-section">
+                    <div class="welcome-text">Payment</div>
+                    <div class="user-name">Options</div>
+                </div>
+                
+                <div class="profile-card">
+                    <div class="info-row">
+                        <span class="info-label">Current Balance</span>
+                        <span class="info-value">Ksh 1,250</span>
+                    </div>
+                    
+                    <div class="info-row">
+                        <span class="info-label">Subscription Plan</span>
+                        <span class="info-value">Monthly Pass</span>
+                    </div>
+                    
+                    <div class="info-row">
+                        <span class="info-label">Next Payment</span>
+                        <span class="info-value">15/12/2023</span>
+                    </div>
+                    
+                    <div class="info-row">
+                        <span class="info-label">Monthly Fee</span>
+                        <span class="info-value">Ksh 4,000</span>
+                    </div>
+                </div>
+                
+                <div class="payment-options">
+                    <div class="payment-option active" onclick="selectPayment('mpesa')">
+                        <div class="payment-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div class="payment-info">
+                            <h3>M-Pesa</h3>
+                            <p>Mobile Money Payment</p>
                         </div>
                     </div>
                     
-                    <div class="section-title">Recent Trips</div>
-                    <div class="trips-list">
-                        <div class="trip-header">
-                            <div>Trip Time</div>
-                            <div>Earnings</div>
+                    <div class="payment-option" onclick="selectPayment('card')">
+                        <div class="payment-icon">
+                            <i class="far fa-credit-card"></i>
                         </div>
-                        
-                        <div class="trip-item">
-                            <div class="trip-time">08:30 AM</div>
-                            <div class="trip-earnings">Ksh 1500</div>
-                        </div>
-                        
-                        <div class="trip-item">
-                            <div class="trip-time">09:15 AM</div>
-                            <div class="trip-earnings">Ksh 1200</div>
-                        </div>
-                        
-                        <div class="trip-item">
-                            <div class="trip-time">10:45 AM</div>
-                            <div class="trip-earnings">Ksh 2000</div>
-                        </div>
-                        
-                        <div class="trip-item">
-                            <div class="trip-time">12:30 PM</div>
-                            <div class="trip-earnings">Ksh 1400</div>
-                        </div>
-                        
-                        <div class="trip-item">
-                            <div class="trip-time">02:15 PM</div>
-                            <div class="trip-earnings">Ksh 1800</div>
+                        <div class="payment-info">
+                            <h3>Credit/Debit Card</h3>
+                            <p>Visa, Mastercard, Amex</p>
                         </div>
                     </div>
                     
-                    <button class="action-btn" style="margin-top: 20px;">
-                        <i class="fas fa-file-alt"></i> View Detailed Report
-                    </button>
+                    <div class="payment-option" onclick="selectPayment('bank')">
+                        <div class="payment-icon">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <div class="payment-info">
+                            <h3>Bank Transfer</h3>
+                            <p>Direct bank transfer</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="action-btn" onclick="makePayment()">
+                    <i class="fas fa-lock"></i> Make Payment
+                </button>
+            </div>
+               
+            <!-- KYC Content -->
+            <div id="kyc-content" class="content-section">
+                <div class="welcome-section">
+                    <div class="welcome-text">KYC</div>
+                    <div class="user-name">Verification</div>
+                </div>
+                
+                <div class="kyc-status">
+                    <div class="kyc-text">
+                        <h3>KYC Verification</h3>
+                        <p>Complete verification to access all features</p>
+                    </div>
+                    <div class="kyc-badge">Pending</div>
+                </div>
+                
+                <div class="upload-card">
+                    <div class="upload-icon">
+                        <i class="fas fa-id-card"></i>
+                    </div>
+                    <div class="upload-title">Upload ID Document</div>
+                    <div class="upload-desc">Upload front and back of your government ID</div>
+                    <button class="upload-btn" onclick="uploadID()">Upload ID</button>
+                </div>
+                
+                <div class="upload-card">
+                    <div class="upload-icon">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <div class="upload-title">Take Selfie</div>
+                    <div class="upload-desc">Take a clear photo of yourself</div>
+                    <button class="upload-btn" onclick="takeSelfie()">Take Photo</button>
+                </div>
+                
+                <button class="action-btn" onclick="submitKYC()">
+                    <i class="fas fa-paper-plane"></i> Submit for Verification
+                </button>
+                
+                <p style="text-align: center; color: #4CAF50; font-size: 13px; margin-top: 15px;">
+                    <i class="fas fa-clock"></i> Verification usually takes 1-3 business days
+                </p>
+            </div>
+
+            <!-- Routes Content -->
+            <div id="routes-content" class="content-section">
+                <div class="welcome-section">
+                    <div class="welcome-text">City Shuttle</div>
+                    <div class="user-name">Routes</div>
+                </div>
+                
+                <div class="routes-container">
+                    <div class="routes-info">
+                        <p>Select a location to view the shuttle route on the map</p>
+                    </div>
+                    
+                    <div class="locations-grid">
+                        <button class="location-btn" onclick="showLocationRoute('tao')">
+                            <i class="fas fa-map-pin"></i>
+                            <span>Tao</span>
+                        </button>
+                        <button class="location-btn" onclick="showLocationRoute('afya')">
+                            <i class="fas fa-map-pin"></i>
+                            <span>Afya Center</span>
+                        </button>
+                        <button class="location-btn" onclick="showLocationRoute('uhuru')">
+                            <i class="fas fa-map-pin"></i>
+                            <span>Uhuru Park</span>
+                        </button>
+                        <button class="location-btn" onclick="showLocationRoute('moi')">
+                            <i class="fas fa-map-pin"></i>
+                            <span>Moi Avenue</span>
+                        </button>
+                        <button class="location-btn" onclick="showLocationRoute('nyayo')">
+                            <i class="fas fa-map-pin"></i>
+                            <span>Nyayo</span>
+                        </button>
+                        <button class="location-btn" onclick="showLocationRoute('harambee')">
+                            <i class="fas fa-map-pin"></i>
+                            <span>Harambee</span>
+                        </button>
+                    </div>
+                    
+                    <div id="route-map-container" class="route-map-container" style="display: none;">
+                        <div id="route-map" class="route-map"></div>
+                        <div class="route-details">
+                            <h3 id="route-name"></h3>
+                            <p id="route-description"></p>
+                            <div class="route-info-box">
+                                <p><strong>Distance:</strong> <span id="route-distance"></span></p>
+                                <p><strong>Estimated Time:</strong> <span id="route-time"></span></p>
+                                <p><strong>Coordinates:</strong> <span id="route-coords"></span></p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            
-            <!-- Payment Methods Tab -->
-            <div id="payment" class="tab-content">
-                <div class="payment-section">
-                    <div class="notice-card">
-                        <div class="notice-title">
-                            <i class="fas fa-exclamation-circle"></i>
-                            Before you proceed
+
+            <!-- Buses Content - BLE Tracker -->
+            <div id="buses-content" class="content-section">
+                <div class="welcome-section">
+                    <div class="welcome-text">Find Incoming</div>
+                    <div class="user-name">City Shuttle Buses</div>
+                </div>
+
+                <div class="buses-container">
+                    <!-- BLE Scanner Section -->
+                    <div class="ble-scanner-section">
+                        <div class="scanner-header">
+                            <h3><i class="fas fa-bluetooth"></i> Bluetooth Bus Tracker</h3>
+                            <p>Scan for nearby buses using BLE tracking</p>
                         </div>
-                        <p style="color: #2C3E50;">Select your preferred payment method to complete your subscription or trip payment.</p>
-                    </div>
-                    
-                    <div class="section-title">Payment Methods</div>
-                    
-                    <div class="payment-options">
-                        <div class="payment-option active" data-payment="mpesa">
-                            <div class="payment-icon">
-                                <i class="fas fa-mobile-alt"></i>
-                            </div>
-                            <div class="payment-name">M-Pesa</div>
-                            <div class="payment-desc">Mobile Money</div>
+
+                        <div class="scanner-controls">
+                            <button class="scan-btn" id="ble-scan-btn" onclick="startBLEScan()">
+                                <i class="fas fa-search"></i> Start Scanning for Buses
+                            </button>
+                            <button class="scan-btn stop-btn" id="ble-stop-btn" onclick="stopBLEScan()" style="display:none;">
+                                <i class="fas fa-stop-circle"></i> Stop Scanning
+                            </button>
                         </div>
-                        
-                        <div class="payment-option" data-payment="card">
-                            <div class="payment-icon">
-                                <i class="far fa-credit-card"></i>
+
+                        <div class="scanner-status" id="scanner-status" style="display:none;">
+                            <div class="status-icon scanning">
+                                <i class="fas fa-spinner fa-spin"></i>
                             </div>
-                            <div class="payment-name">Card</div>
-                            <div class="payment-desc">Credit/Debit Card</div>
+                            <div class="status-text">
+                                <p id="status-message">Scanning for nearby buses...</p>
+                                <p id="device-count">Devices found: 0</p>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="payment-options">
-                        <div class="payment-option" data-payment="applepay">
-                            <div class="payment-icon">
-                                <i class="fab fa-apple"></i>
-                            </div>
-                            <div class="payment-name">Apple Pay</div>
-                            <div class="payment-desc">Apple Wallet</div>
-                        </div>
-                        
-                        <div class="payment-option" data-payment="mobilepay">
-                            <div class="payment-icon">
-                                <i class="fas fa-wallet"></i>
-                            </div>
-                            <div class="payment-name">Mobile Pay</div>
-                            <div class="payment-desc">Digital Wallet</div>
+
+                        <div class="browser-warning" id="browser-warning" style="display:none;">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <p>Web Bluetooth is not supported on this device/browser. Please use Chrome, Edge, or Opera on Android/Windows.</p>
                         </div>
                     </div>
-                    
-                    <div class="info-card" style="margin-top: 20px;">
-                        <div class="info-title">Selected Payment Method</div>
-                        <div class="info-value">M-Pesa •••• 2547</div>
+
+                    <!-- Buses List -->
+                    <div class="buses-list" id="buses-list">
+                        <p class="no-buses-message">No buses detected yet. Tap "Start Scanning" to find nearby buses.</p>
                     </div>
-                    
-                    <button class="action-btn" style="margin-top: 20px;">
-                        <i class="fas fa-lock"></i> Secure Payment
-                    </button>
+
+                    <!-- Demo/Fallback Buses -->
+                    <div class="buses-demo-section" id="buses-demo-section" style="margin-top: 25px;">
+                        <h3 style="color: #2C3E50; margin-bottom: 15px;">
+                            <i class="fas fa-info-circle" style="margin-right: 8px;"></i>Available Routes
+                        </h3>
+                        <div class="buses-list" id="demo-buses">
+                            <!-- Demo buses will be generated here -->
+                        </div>
+                    </div>
                 </div>
             </div>
-            
-            <!-- KYC Verification Tab -->
-            <div id="kyc" class="tab-content">
-                <div class="kyc-section">
-                    <div class="kyc-status">
-                        <div class="kyc-text">
-                            <h3>KYC Verification</h3>
-                            <p>Secure your account to unlock full features</p>
+
+            <!-- Profile Content -->
+            <div id="profile-content" class="content-section">
+                <!-- Profile View (After KYC) -->
+                <div id="profile-view" class="profile-view" style="display:none;">
+                    <div class="profile-header">
+                        <div class="profile-avatar">
+                            <i class="fas fa-user-circle"></i>
                         </div>
-                        <div class="kyc-badge">Pending</div>
+                        <div class="profile-status">
+                            <h2 id="profile-username">John Doe</h2>
+                            <p id="profile-verification-status" class="verification-badge verified">
+                                <i class="fas fa-check-circle"></i> Verified
+                            </p>
+                        </div>
                     </div>
-                    
-                    <div class="section-title">Identity Document</div>
-                    
-                    <div class="upload-section">
-                        <div class="upload-card">
-                            <div class="upload-icon">
-                                <i class="fas fa-id-card"></i>
+
+                    <div class="profile-details-card">
+                        <div class="detail-section">
+                            <h3>Personal Information</h3>
+                            <div class="detail-item">
+                                <span class="detail-label">Full Name</span>
+                                <span class="detail-value" id="verified-fullname">-</span>
                             </div>
-                            <div class="upload-title">Upload Front ID</div>
-                            <div class="upload-desc">Government issued ID (Front side)</div>
-                            <button class="upload-btn">Upload File</button>
-                        </div>
-                        
-                        <div class="upload-card">
-                            <div class="upload-icon">
-                                <i class="fas fa-id-card"></i>
+                            <div class="detail-item">
+                                <span class="detail-label">Email</span>
+                                <span class="detail-value" id="verified-email">-</span>
                             </div>
-                            <div class="upload-title">Upload Back ID</div>
-                            <div class="upload-desc">Government issued ID (Back side)</div>
-                            <button class="upload-btn">Upload File</button>
+                            <div class="detail-item">
+                                <span class="detail-label">Phone Number</span>
+                                <span class="detail-value" id="verified-phone">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Date of Birth</span>
+                                <span class="detail-value" id="verified-dob">-</span>
+                            </div>
+                        </div>
+
+                        <div class="detail-section">
+                            <h3>Identification Documents</h3>
+                            <div class="detail-item">
+                                <span class="detail-label">ID Type</span>
+                                <span class="detail-value" id="verified-idtype">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">ID Number</span>
+                                <span class="detail-value" id="verified-idnumber">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">ID Document</span>
+                                <div class="verified-document">
+                                    <i class="fas fa-file-pdf"></i>
+                                    <span id="verified-iddoc-name">document.pdf</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="detail-section">
+                            <h3>Verification Documents</h3>
+                            <div class="detail-item">
+                                <span class="detail-label">Passport Photo</span>
+                                <div class="verified-photo">
+                                    <img id="verified-passport" src="" alt="Passport Photo" style="width: 100%; border-radius: 8px;">
+                                </div>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Selfie Verification</span>
+                                <div class="verified-photo">
+                                    <img id="verified-selfie" src="" alt="Selfie" style="width: 100%; border-radius: 8px;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="detail-section">
+                            <h3>Payment Information</h3>
+                            <div class="detail-item">
+                                <span class="detail-label">Credit Card (Last 4 digits)</span>
+                                <span class="detail-value" id="verified-cardlast4">•••• •••• •••• ****</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Card Holder Name</span>
+                                <span class="detail-value" id="verified-cardholder">-</span>
+                            </div>
+                        </div>
+
+                        <div class="detail-section">
+                            <h3>Additional Information</h3>
+                            <div class="detail-item">
+                                <span class="detail-label">Address</span>
+                                <span class="detail-value" id="verified-address">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Verification Date</span>
+                                <span class="detail-value" id="verified-date">-</span>
+                            </div>
                         </div>
                     </div>
-                    
-                    <div class="section-title">Live Selfie</div>
-                    
-                    <div class="upload-card">
-                        <div class="upload-icon">
-                            <i class="fas fa-camera"></i>
-                        </div>
-                        <div class="upload-title">Take a live photo for verification</div>
-                        <div class="upload-desc">Ensure good lighting and face the camera directly</div>
-                        <button class="upload-btn">Take Photo</button>
+
+                    <div class="profile-actions">
+                        <button class="action-btn" onclick="editProfile()">
+                            <i class="fas fa-edit"></i> Edit Profile
+                        </button>
+                        <button class="action-btn secondary" onclick="showKYCForm()">
+                            <i class="fas fa-refresh"></i> Update KYC
+                        </button>
                     </div>
-                    
-                    <button class="action-btn" style="margin-top: 20px;">
+                </div>
+
+                <!-- KYC Verification Form (Before Verification) -->
+                <div id="kyc-form-view" class="kyc-form-view">
+                    <div class="welcome-section">
+                        <div class="welcome-text">Complete Your</div>
+                        <div class="user-name">KYC Verification</div>
+                    </div>
+
+                    <div class="kyc-progress">
+                        <div class="progress-step completed">
+                            <div class="step-number">1</div>
+                            <div class="step-label">Personal Info</div>
+                        </div>
+                        <div class="progress-line"></div>
+                        <div class="progress-step">
+                            <div class="step-number">2</div>
+                            <div class="step-label">Documents</div>
+                        </div>
+                        <div class="progress-line"></div>
+                        <div class="progress-step">
+                            <div class="step-number">3</div>
+                            <div class="step-label">Verification</div>
+                        </div>
+                    </div>
+
+                    <!-- Personal Information Form -->
+                    <div class="kyc-section">
+                        <h3>Personal Information</h3>
+                        <div class="form-group">
+                            <label class="input-label">Full Name</label>
+                            <input type="text" class="input-field" id="kyc-fullname" placeholder="Enter your full name">
+                        </div>
+                        <div class="form-group">
+                            <label class="input-label">Email Address</label>
+                            <input type="email" class="input-field" id="kyc-email" placeholder="Enter your email">
+                        </div>
+                        <div class="form-group">
+                            <label class="input-label">Phone Number</label>
+                            <input type="tel" class="input-field" id="kyc-phone" placeholder="Enter your phone number">
+                        </div>
+                        <div class="form-group">
+                            <label class="input-label">Date of Birth</label>
+                            <input type="date" class="input-field" id="kyc-dob">
+                        </div>
+                    </div>
+
+                    <!-- Identification Section -->
+                    <div class="kyc-section">
+                        <h3>Identification Documents</h3>
+                        <div class="form-group">
+                            <label class="input-label">ID Type</label>
+                            <select class="input-field" id="kyc-idtype">
+                                <option value="">Select ID Type</option>
+                                <option value="national-id">National ID</option>
+                                <option value="passport">Passport</option>
+                                <option value="drivers-license">Driver's License</option>
+                                <option value="voter-card">Voter's Card</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="input-label">ID Number</label>
+                            <input type="text" class="input-field" id="kyc-idnumber" placeholder="Enter your ID number">
+                        </div>
+                        <div class="form-group">
+                            <label class="input-label">Upload ID Document</label>
+                            <div class="file-upload">
+                                <input type="file" id="kyc-iddoc" accept="image/*,.pdf" style="display:none;">
+                                <button type="button" class="upload-btn" onclick="document.getElementById('kyc-iddoc').click()">
+                                    <i class="fas fa-upload"></i> Choose File
+                                </button>
+                                <span class="file-name" id="iddoc-name">No file selected</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Photo Verification Section -->
+                    <div class="kyc-section">
+                        <h3>Photo Verification</h3>
+                        <div class="form-group">
+                            <label class="input-label">Passport Photo</label>
+                            <div class="file-upload">
+                                <input type="file" id="kyc-passport" accept="image/*" style="display:none;">
+                                <button type="button" class="upload-btn" onclick="document.getElementById('kyc-passport').click()">
+                                    <i class="fas fa-camera"></i> Upload Passport Photo
+                                </button>
+                                <span class="file-name" id="passport-name">No file selected</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="input-label">Selfie Photo</label>
+                            <div class="file-upload">
+                                <input type="file" id="kyc-selfie" accept="image/*" style="display:none;">
+                                <button type="button" class="upload-btn" onclick="document.getElementById('kyc-selfie').click()">
+                                    <i class="fas fa-selfie"></i> Upload Selfie
+                                </button>
+                                <span class="file-name" id="selfie-name">No file selected</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Payment Information Section -->
+                    <div class="kyc-section">
+                        <h3>Payment Information <span class="optional-badge">(Optional)</span></h3>
+                        <div class="form-group">
+                            <label class="input-label">Card Holder Name</label>
+                            <input type="text" class="input-field" id="kyc-cardholder" placeholder="Name as it appears on card">
+                        </div>
+                        <div class="form-group">
+                            <label class="input-label">Credit Card Number</label>
+                            <input type="text" class="input-field" id="kyc-cardnumber" placeholder="•••• •••• •••• ••••" maxlength="19">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="input-label">Expiry Date</label>
+                                <input type="text" class="input-field" id="kyc-cardexpiry" placeholder="MM/YY" maxlength="5">
+                            </div>
+                            <div class="form-group">
+                                <label class="input-label">CVV</label>
+                                <input type="text" class="input-field" id="kyc-cardcvv" placeholder="•••" maxlength="4">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Additional Information Section -->
+                    <div class="kyc-section">
+                        <h3>Additional Information</h3>
+                        <div class="form-group">
+                            <label class="input-label">Address</label>
+                            <textarea class="input-field" id="kyc-address" placeholder="Enter your residential address" rows="3"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Consent -->
+                    <div class="consent-box">
+                        <div class="consent-item">
+                            <input type="checkbox" id="consent-privacy" class="consent-checkbox">
+                            <label for="consent-privacy">I agree to the privacy policy and terms of service</label>
+                        </div>
+                        <div class="consent-item">
+                            <input type="checkbox" id="consent-kyc" class="consent-checkbox">
+                            <label for="consent-kyc">I declare that all information provided is true and accurate</label>
+                        </div>
+                    </div>
+
+                    <button class="action-btn" onclick="submitKYCForm()" style="width: 100%; margin-top: 20px;">
                         <i class="fas fa-paper-plane"></i> Submit for Verification
                     </button>
-                    
+
                     <p style="text-align: center; color: #4CAF50; font-size: 13px; margin-top: 15px;">
-                        <i class="fas fa-clock"></i> Verification usually takes 1 to 3 minutes
+                        <i class="fas fa-lock"></i> Your information is secure and encrypted
                     </p>
                 </div>
             </div>
             
-            <!-- Profile Tab -->
-            <div id="profile" class="tab-content">
-                <div class="profile-section">
-                    <div class="profile-info">
-                        <div class="profile-avatar">JD</div>
-                        <div class="profile-details">
-                            <h3>John S. Doe</h3>
-                            <p>kimathi@gmail.com</p>
-                            <p>Premium Member since Jan 2023</p>
-                        </div>
-                    </div>
-                    
-                    <div class="info-card">
-                        <div class="info-title">Current Subscription</div>
-                        <div class="info-value">Monthly Pass - $4,000</div>
-                    </div>
-                    
-                    <div class="info-card">
-                        <div class="info-title">Next Billing Date</div>
-                        <div class="info-value">15/12/2023</div>
-                    </div>
-                    
-                    <div class="info-card">
-                        <div class="info-title">Daily Trips Remaining</div>
-                        <div class="info-value">1 out of 2 trips</div>
-                    </div>
-                    
-                    <div class="info-card">
-                        <div class="info-title">KYC Status</div>
-                        <div class="info-value">Pending Verification</div>
-                    </div>
-                    
-                    <button class="action-btn">
-                        <i class="fas fa-cog"></i> Account Settings
-                    </button>
-                    
-                    <button class="action-btn" style="background: linear-gradient(to right, #FFF8F0, #FAF0E6); color: #4CAF50; border: 2px solid #4CAF50;">
-                        <i class="fas fa-question-circle"></i> Help & Support
-                    </button>
-                </div>
-            </div>
             
             <!-- App Footer -->
             <div class="app-footer">
@@ -439,46 +686,301 @@
             </div>
         </div>
         
-        <!-- Floating Bottom Navigation (Initially hidden, shown after login) -->
-        <div id="bottom-navigation" style="display: none;">
-            <nav class="bottom-nav">
-                <a href="#" class="nav-item active" data-tab="home">
-                    <i class="fas fa-home"></i>
-                    <span>Home</span>
-                </a>
-                <a href="#" class="nav-item" data-tab="qrcode">
-                    <i class="fas fa-qrcode"></i>
-                    <span>QR Code</span>
-                </a>
-                <a href="#" class="nav-item" data-tab="drivers">
-                    <i class="fas fa-car"></i>
-                    <span>Drivers</span>
-                </a>
-                <a href="#" class="nav-item" data-tab="payment">
-                    <i class="fas fa-credit-card"></i>
-                    <span>Payment</span>
-                </a>
-                <a href="#" class="nav-item" data-tab="kyc">
-                    <i class="fas fa-id-card"></i>
-                    <span>KYC</span>
-                    <span class="nav-badge">1</span>
-                </a>
-                <a href="#" class="nav-item" data-tab="profile">
-                    <i class="fas fa-user"></i>
-                    <span>Profile</span>
-                </a>
-            </nav>
+        <!-- Floating Navigation -->
+        <div id="floating-nav" class="floating-nav" style="display: none;">
+            <button class="nav-btn active" onclick="showSection('home-content')">
+                <i class="fas fa-home"></i>
+                <span>Home</span> 
+            </button>
+            <button class="nav-btn" onclick="showSection('routes-content')">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Routes</span>
+            </button>
+            <button class="nav-btn" onclick="showSection('buses-content')">
+                <i class="fas fa-bus"></i>
+                <span>Buses</span>
+            </button>
+            <button class="nav-btn" onclick="showSection('profile-content')">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </button>
+        </div>
+
+    <!-- Sections -->
+    <div class="section">
+            <!-- Profile View (After KYC) -->
+            <div id="profile-view" class="profile-view" style="display:none;">
+                <div class="profile-header">
+                    <div class="profile-avatar">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <div class="profile-status">
+                        <h2 id="profile-username">John Doe</h2>
+                        <p id="profile-verification-status" class="verification-badge verified">
+                            <i class="fas fa-check-circle"></i> Verified
+                        </p>
+                    </div>
+                </div>
+
+                <div class="profile-details-card">
+                    <div class="detail-section">
+                        <h3>Personal Information</h3>
+                        <div class="detail-item">
+                            <span class="detail-label">Full Name</span>
+                            <span class="detail-value" id="verified-fullname">-</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Email</span>
+                            <span class="detail-value" id="verified-email">-</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Phone Number</span>
+                            <span class="detail-value" id="verified-phone">-</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Date of Birth</span>
+                            <span class="detail-value" id="verified-dob">-</span>
+                        </div>
+                    </div>
+
+                    <div class="detail-section">
+                        <h3>Identification Documents</h3>
+                        <div class="detail-item">
+                            <span class="detail-label">ID Type</span>
+                            <span class="detail-value" id="verified-idtype">-</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">ID Number</span>
+                            <span class="detail-value" id="verified-idnumber">-</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">ID Document</span>
+                            <div class="verified-document">
+                                <i class="fas fa-file-pdf"></i>
+                                <span id="verified-iddoc-name">document.pdf</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="detail-section">
+                        <h3>Verification Documents</h3>
+                        <div class="detail-item">
+                            <span class="detail-label">Passport Photo</span>
+                            <div class="verified-photo">
+                                <img id="verified-passport" src="" alt="Passport Photo" style="width: 100%; border-radius: 8px;">
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Selfie Verification</span>
+                            <div class="verified-photo">
+                                <img id="verified-selfie" src="" alt="Selfie" style="width: 100%; border-radius: 8px;">
+                            </div>
+                        </div>
+                    
+
+                    <div class="detail-section">
+                        <h3>Payment Information</h3>
+                        <div class="detail-item">
+                            <span class="detail-label">Credit Card (Last 4 digits)</span>
+                            <span class="detail-value" id="verified-cardlast4">•••• •••• •••• ****</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Card Holder Name</span>
+                            <span class="detail-value" id="verified-cardholder">-</span>
+                        </div>
+                    </div>
+
+                    <div class="detail-section">
+                        <h3>Additional Information</h3>
+                        <div class="detail-item">
+                            <span class="detail-label">Address</span>
+                            <span class="detail-value" id="verified-address">-</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Verification Date</span>
+                            <span class="detail-value" id="verified-date">-</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-actions">
+                    <button class="action-btn" onclick="editProfile()">
+                        <i class="fas fa-edit"></i> Edit Profile
+                    </button>
+                    <button class="action-btn secondary" onclick="showKYCForm()">
+                        <i class="fas fa-refresh"></i> Update KYC
+                    </button>
+                </div>
+            </div>
+
+            <!-- KYC Verification Form (Before Verification) -->
+            <div id="kyc-form-view" class="kyc-form-view">
+                <div class="welcome-section">
+                    <div class="welcome-text">Complete Your</div>
+                    <div class="user-name">KYC Verification</div>
+                </div>
+
+                <div class="kyc-progress">
+                    <div class="progress-step completed">
+                        <div class="step-number">1</div>
+                        <div class="step-label">Personal Info</div>
+                    </div>
+                    <div class="progress-line"></div>
+                    <div class="progress-step">
+                        <div class="step-number">2</div>
+                        <div class="step-label">Documents</div>
+                    </div>
+                    <div class="progress-line"></div>
+                    <div class="progress-step">
+                        <div class="step-number">3</div>
+                        <div class="step-label">Verification</div>
+                    </div>
+                </div>
+
+                <!-- Personal Information Form -->
+                <div class="kyc-section">
+                    <h3>Personal Information</h3>
+                    <div class="form-group">
+                        <label class="input-label">Full Name</label>
+                        <input type="text" class="input-field" id="kyc-fullname" placeholder="Enter your full name">
+                    </div>
+                    <div class="form-group">
+                        <label class="input-label">Email Address</label>
+                        <input type="email" class="input-field" id="kyc-email" placeholder="Enter your email">
+                    </div>
+                    <div class="form-group">
+                        <label class="input-label">Phone Number</label>
+                        <input type="tel" class="input-field" id="kyc-phone" placeholder="Enter your phone number">
+                    </div>
+                    <div class="form-group">
+                        <label class="input-label">Date of Birth</label>
+                        <input type="date" class="input-field" id="kyc-dob">
+                    </div>
+                </div>
+
+                <!-- Identification Section -->
+                <div class="kyc-section">
+                    <h3>Identification Documents</h3>
+                    <div class="form-group">
+                        <label class="input-label">ID Type</label>
+                        <select class="input-field" id="kyc-idtype">
+                            <option value="">Select ID Type</option>
+                            <option value="national-id">National ID</option>
+                            <option value="passport">Passport</option>
+                            <option value="drivers-license">Driver's License</option>
+                            <option value="voter-card">Voter's Card</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="input-label">ID Number</label>
+                        <input type="text" class="input-field" id="kyc-idnumber" placeholder="Enter your ID number">
+                    </div>
+                    <div class="form-group">
+                        <label class="input-label">Upload ID Document</label>
+                        <div class="file-upload">
+                            <input type="file" id="kyc-iddoc" accept="image/*,.pdf" style="display:none;">
+                            <button type="button" class="upload-btn" onclick="document.getElementById('kyc-iddoc').click()">
+                                <i class="fas fa-upload"></i> Choose File
+                            </button>
+               Initialize KYC profile only when profile section is shown
+            if (sectionId === 'profile-content') {
+                initializeProfileSection();
+            }
+            
+            //              <span class="file-name" id="iddoc-name">No file selected</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Photo Verification Section -->
+                <div class="kyc-section">
+                    <h3>Photo Verification</h3>
+                    <div class="form-group">
+                        <label class="input-label">Passport Photo</label>
+                        <div class="file-upload">
+                            <input type="file" id="kyc-passport" accept="image/*" style="display:none;">
+                            <button type="button" class="upload-btn" onclick="document.getElementById('kyc-passport').click()">
+                                <i class="fas fa-camera"></i> Upload Passport Photo
+                            </button>
+                            <span class="file-name" id="passport-name">No file selected</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="input-label">Selfie Photo</label>
+                        <div class="file-upload">
+                            <input type="file" id="kyc-selfie" accept="image/*" style="display:none;">
+                            <button type="button" class="upload-btn" onclick="document.getElementById('kyc-selfie').click()">
+                                <i class="fas fa-selfie"></i> Upload Selfie
+                            </button>
+                            <span class="file-name" id="selfie-name">No file selected</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Payment Information Section -->
+                <div class="kyc-section">
+                    <h3>Payment Information <span class="optional-badge">(Optional)</span></h3>
+                    <div class="form-group">
+                        <label class="input-label">Card Holder Name</label>
+                        <input type="text" class="input-field" id="kyc-cardholder" placeholder="Name as it appears on card">
+                    </div>
+                    <div class="form-group">
+                        <label class="input-label">Credit Card Number</label>
+                        <input type="text" class="input-field" id="kyc-cardnumber" placeholder="•••• •••• •••• ••••" maxlength="19">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="input-label">Expiry Date</label>
+                            <input type="text" class="input-field" id="kyc-cardexpiry" placeholder="MM/YY" maxlength="5">
+                        </div>
+                        <div class="form-group">
+                            <label class="input-label">CVV</label>
+                            <input type="text" class="input-field" id="kyc-cardcvv" placeholder="•••" maxlength="4">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Information Section -->
+                <div class="kyc-section">
+                    <h3>Additional Information</h3>
+                    <div class="form-group">
+                        <label class="input-label">Address</label>
+                        <textarea class="input-field" id="kyc-address" placeholder="Enter your residential address" rows="3"></textarea>
+                    </div>
+                </div>
+
+                <!-- Consent -->
+                <div class="consent-box">
+                    <div class="consent-item">
+                        <input type="checkbox" id="consent-privacy" class="consent-checkbox">
+                        <label for="consent-privacy">I agree to the privacy policy and terms of service</label>
+                    </div>
+                    <div class="consent-item">
+                        <input type="checkbox" id="consent-kyc" class="consent-checkbox">
+                        <label for="consent-kyc">I declare that all information provided is true and accurate</label>
+                    </div>
+                </div>
+
+                <button class="action-btn" onclick="submitKYCForm()" style="width: 100%; margin-top: 20px;">
+                    <i class="fas fa-paper-plane"></i> Submit for Verification
+                </button>
+
+                <p style="text-align: center; color: #4CAF50; font-size: 13px; margin-top: 15px;">
+                    <i class="fas fa-lock"></i> Your information is secure and encrypted
+                </p>
+            </div>
         </div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
     <script>
         // Login functionality
         const loginPanel = document.getElementById('login-panel');
         const mainApp = document.getElementById('main-app');
+        const floatingNav = document.getElementById('floating-nav');
         const emailForm = document.getElementById('email-form');
         const phoneForm = document.getElementById('phone-form');
         const loginOptions = document.querySelector('.login-form');
-        const bottomNav = document.getElementById('bottom-navigation');
         
         // Show email form
         document.getElementById('email-login').addEventListener('click', function() {
@@ -552,10 +1054,10 @@
             
             // Simulate login process
             setTimeout(() => {
-                // Successful login - show main app
+                // Successful login
                 loginPanel.style.display = 'none';
                 mainApp.style.display = 'block';
-                bottomNav.style.display = 'block';
+                floatingNav.style.display = 'flex';
                 
                 // Reset button
                 this.innerHTML = 'Sign In';
@@ -579,10 +1081,10 @@
             
             // Simulate login process
             setTimeout(() => {
-                // Successful login - show main app
+                // Successful login
                 loginPanel.style.display = 'none';
                 mainApp.style.display = 'block';
-                bottomNav.style.display = 'block';
+                floatingNav.style.display = 'flex';
                 
                 // Reset button
                 this.innerHTML = 'Sign In';
@@ -592,28 +1094,32 @@
         
         // Google login
         document.getElementById('google-login').addEventListener('click', function() {
-            alert('Redirecting to Google authentication...');
-            // In real app, this would redirect to Google OAuth
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Connecting...';
+            this.disabled = true;
             
-            // Simulate login
             setTimeout(() => {
                 loginPanel.style.display = 'none';
                 mainApp.style.display = 'block';
-                bottomNav.style.display = 'block';
-            }, 1000);
+                floatingNav.style.display = 'flex';
+                
+                this.innerHTML = 'Continue with Google';
+                this.disabled = false;
+            }, 1500);
         });
         
         // Facebook login
         document.getElementById('facebook-login').addEventListener('click', function() {
-            alert('Redirecting to Facebook authentication...');
-            // In real app, this would redirect to Facebook OAuth
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Connecting...';
+            this.disabled = true;
             
-            // Simulate login
             setTimeout(() => {
                 loginPanel.style.display = 'none';
                 mainApp.style.display = 'block';
-                bottomNav.style.display = 'block';
-            }, 1000);
+                floatingNav.style.display = 'flex';
+                
+                this.innerHTML = 'Continue with Facebook';
+                this.disabled = false;
+            }, 1500);
         });
         
         // Sign up link
@@ -630,129 +1136,1067 @@
             });
         });
         
-        // Floating bottom navigation functionality
-        const navItems = document.querySelectorAll('.nav-item');
-
-        // Navigation item click handler
-        navItems.forEach(item => {
-            item.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                // Remove active class from all items
-                navItems.forEach(nav => nav.classList.remove('active'));
-                
-                // Add active class to clicked item
-                this.classList.add('active');
-                
-                // Get tab ID
-                const tabId = this.getAttribute('data-tab');
-                
-                // Hide all tab contents
-                document.querySelectorAll('.tab-content').forEach(content => {
-                    content.classList.remove('active');
-                });
-                
-                // Show corresponding tab content
-                document.getElementById(tabId).classList.add('active');
+        // Section Navigation
+        function showSection(sectionId) {
+            // Hide all content sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
             });
-        });
-        
-        // Payment method selection
-        document.querySelectorAll('.payment-option').forEach(option => {
-            option.addEventListener('click', function() {
-                // Remove active class from all payment options
-                document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('active'));
-                
-                // Add active class to clicked option
-                this.classList.add('active');
-                
-                // Update selected payment method display
-                const paymentName = this.querySelector('.payment-name').textContent;
-                document.querySelector('.info-value').textContent = `${paymentName} •••• 2547`;
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Update top navigation buttons
+            const sectionMap = {
+                'home-content': 'Home',
+                'payment-content': 'Payment',
+                'kyc-content': 'KYC',
+                'routes-content': 'Routes',
+                'buses-content': 'Buses',
+                'profile-content': 'Profile'
+            };
+            
+            document.querySelectorAll('.top-nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent === sectionMap[sectionId]) {
+                    btn.classList.add('active');
+                }
             });
-        });
-        
-        // Simulate QR code update
-        function updateQRCode() {
-            const now = new Date();
-            const timeString = now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-            document.querySelector('.valid-time').textContent = timeString;
             
-            // Update trip count randomly for demo
-            const usedTrips = Math.floor(Math.random() * 3);
-            document.querySelector('.count-number:nth-child(2)').textContent = usedTrips;
+            // Update floating navigation buttons
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
             
-            // Show message if all trips used
-            if (usedTrips >= 2) {
-                document.querySelector('.qr-section p').innerHTML = '<i class="fas fa-exclamation-circle"></i> Daily trip limit reached. New QR code available tomorrow.';
-                document.querySelector('.qr-section p').style.color = '#e74c3c';
+            // Set active based on which section was clicked
+            if (sectionId === 'home-content') {
+                document.querySelector('.nav-btn:nth-child(1)').classList.add('active');
+            } else if (sectionId === 'routes-content') {
+                document.querySelector('.nav-btn:nth-child(2)').classList.add('active');
+            } else if (sectionId === 'buses-content') {
+                document.querySelector('.nav-btn:nth-child(3)').classList.add('active');
+            } else if (sectionId === 'profile-content') {
+                document.querySelector('.nav-btn:nth-child(4)').classList.add('active');
             }
         }
         
-        // Update driver stats
-        function updateDriverStats() {
-            const trips = Math.floor(Math.random() * 5) + 10;
-            const completed = Math.floor(trips * 0.7);
-            const inProgress = trips - completed;
-            const earnings = Math.floor(trips * 35);
+        // Payment methods
+        let selectedPayment = 'mpesa';
+        
+        function selectPayment(method) {
+            selectedPayment = method;
             
-            document.querySelector('.stat-value:nth-child(1)').textContent = trips;
-            document.querySelector('.stat-value:nth-child(2)').textContent = completed;
-            document.querySelector('.stat-value:nth-child(3)').textContent = inProgress;
-            document.querySelector('.stat-value:nth-child(4)').textContent = `$${earnings}`;
+            // Update UI
+            document.querySelectorAll('.payment-option').forEach(option => {
+                option.classList.remove('active');
+            });
+            event.currentTarget.classList.add('active');
         }
         
-        // Update time every minute
-        setInterval(updateQRCode, 60000);
-        setInterval(updateDriverStats, 30000);
-        
-        // Initial updates
-        updateQRCode();
-        updateDriverStats();
-        
-        // Subscription button interaction
-        document.querySelector('.subscribe-btn').addEventListener('click', function() {
-            alert('Redirecting to payment gateway for Monthly Pass renewal...');
-            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
-            this.disabled = true;
+        function makePayment() {
+            const amount = 4000; // Monthly Pass amount
+            const paymentBtn = event.currentTarget;
             
-            // Simulate payment process
+            if (selectedPayment === 'mpesa') {
+                processM_PesaPayment(amount, paymentBtn);
+            } else if (selectedPayment === 'card') {
+                processCardPayment(amount, paymentBtn);
+            } else if (selectedPayment === 'bank') {
+                processBankTransfer(amount, paymentBtn);
+            }
+        }
+        
+        function processM_PesaPayment(amount, btn) {
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing M-Pesa...';
+            btn.disabled = true;
+            
             setTimeout(() => {
-                this.innerHTML = '<i class="fas fa-check"></i> Subscription Renewed!';
-                this.style.background = 'linear-gradient(to right, #2ecc71, #27ae60)';
-                this.style.color = 'white';
-                
-                // Reset button after 3 seconds
+                const phone = prompt('Enter your M-Pesa registered phone number (254...):', '+254');
+                if (phone) {
+                    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Waiting for M-Pesa prompt...';
+                    setTimeout(() => {
+                        btn.innerHTML = '<i class="fas fa-check-circle"></i> Payment Successful!';
+                        btn.style.background = 'linear-gradient(to right, #27ae60, #229954)';
+                        btn.disabled = true;
+                        alert(`M-Pesa payment of Ksh ${amount} has been processed successfully!\nTransaction will be confirmed shortly.`);
+                        setTimeout(() => {
+                            btn.innerHTML = '<i class="fas fa-lock"></i> Make Payment';
+                            btn.style.background = '';
+                            btn.disabled = false;
+                        }, 3000);
+                    }, 2000);
+                } else {
+                    btn.innerHTML = '<i class="fas fa-lock"></i> Make Payment';
+                    btn.disabled = false;
+                }
+            }, 1000);
+        }
+        
+        function processCardPayment(amount, btn) {
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing Card...';
+            btn.disabled = true;
+            
+            const cardDetails = prompt('Enter card details (simulated - enter any 16 digits):');
+            if (cardDetails && cardDetails.length >= 16) {
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing with payment gateway...';
                 setTimeout(() => {
-                    this.innerHTML = '<i class="fas fa-sync-alt"></i> Renew Subscription';
-                    this.style.background = '';
-                    this.style.color = '';
-                    this.disabled = false;
+                    btn.innerHTML = '<i class="fas fa-check-circle"></i> Payment Successful!';
+                    btn.style.background = 'linear-gradient(to right, #27ae60, #229954)';
+                    btn.disabled = true;
+                    alert(`Card payment of Ksh ${amount} has been processed successfully!\nPayment confirmation sent to your email.`);
+                    setTimeout(() => {
+                        btn.innerHTML = '<i class="fas fa-lock"></i> Make Payment';
+                        btn.style.background = '';
+                        btn.disabled = false;
+                    }, 3000);
+                }, 2000);
+            } else {
+                btn.innerHTML = '<i class="fas fa-lock"></i> Make Payment';
+                btn.disabled = false;
+                alert('Invalid card details. Please try again.');
+            }
+        }
+        
+        function processBankTransfer(amount, btn) {
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating bank details...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                const bankInfo = `\n📋 BANK TRANSFER DETAILS\n\nBank Name: Kenya Commercial Bank\nAccount Name: CityPlus Shuttles Ltd\nAccount Number: 1234567890\nBranch Code: 001\nAmount: Ksh ${amount}\n\nPlease transfer the amount and reply with your transaction reference.`;
+                alert(bankInfo);
+                btn.innerHTML = '<i class="fas fa-check-circle"></i> Details Sent to Email!';
+                btn.style.background = 'linear-gradient(to right, #27ae60, #229954)';
+                btn.disabled = true;
+                setTimeout(() => {
+                    btn.innerHTML = '<i class="fas fa-lock"></i> Make Payment';
+                    btn.style.background = '';
+                    btn.disabled = false;
                 }, 3000);
-            }, 2000);
+            }, 1500);
+        }
+        
+        function renewSubscription() {
+            alert('Please proceed to the Payment section to renew your subscription.');
+            showSection('payment-content');
+        }
+        
+        // KYC functions
+        function uploadID() {
+            alert('Opening file upload for ID document...');
+        }
+        
+        function takeSelfie() {
+            alert('Opening camera for selfie...');
+        }
+        
+        function submitKYC() {
+            alert('Submitting KYC documents for verification...');
+        }
+        
+        // Update valid time
+        function updateValidTime() {
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            const displayHours = hours % 12 || 12;
+            const displayMinutes = minutes.toString().padStart(2, '0');
+            
+            document.getElementById('valid-time').textContent = 
+                `${displayHours}:${displayMinutes} ${ampm}`;
+        }
+        
+        // QR Code Management
+        let qrCodeInstance = null;
+        let qrExpiryTime = null;
+        let qrCountdownInterval = null;
+        
+        // Generate QR Code
+        function generateQRCode() {
+            // Clear existing QR code
+            const qrContainer = document.getElementById('qr-code');
+            qrContainer.innerHTML = '';
+            
+            // Set expiry time to 2 hours from now
+            qrExpiryTime = new Date(Date.now() + 2 * 60 * 60 * 1000); // 2 hours
+            
+            // Generate unique QR code data (timestamp + random ID)
+            const timestamp = Date.now();
+            const randomId = Math.random().toString(36).substring(2, 15);
+            const qrData = `CITYPLUS-${timestamp}-${randomId}`;
+            
+            // Create QR code
+            qrCodeInstance = new QRCode(qrContainer, {
+                text: qrData,
+                width: 250,
+                height: 250,
+                colorDark: '#000000',
+                colorLight: '#ffffff',
+                correctLevel: QRCode.CorrectLevel.H
+            });
+            
+            // Start countdown timer
+            startQRCountdown();
+        }
+        
+        // Start countdown timer for QR code expiry
+        function startQRCountdown() {
+            // Clear existing interval
+            if (qrCountdownInterval) {
+                clearInterval(qrCountdownInterval);
+            }
+            
+            // Update countdown every second
+            qrCountdownInterval = setInterval(() => {
+                const now = new Date();
+                const timeRemaining = qrExpiryTime - now;
+                
+                if (timeRemaining <= 0) {
+                    // QR code expired
+                    clearInterval(qrCountdownInterval);
+                    document.getElementById('qr-countdown').textContent = 'EXPIRED';
+                    document.getElementById('qr-countdown').style.color = '#e74c3c';
+                    document.getElementById('qr-code').style.opacity = '0.5';
+                    
+                    // Show refresh button
+                    const refreshBtn = document.getElementById('refresh-qr');
+                    refreshBtn.textContent = '<i class="fas fa-sync-alt"></i> QR Code Expired - Tap to Refresh';
+                    refreshBtn.style.background = 'linear-gradient(to right, #e74c3c, #c0392b)';
+                    return;
+                }
+                
+                // Calculate remaining time
+                const hours = Math.floor(timeRemaining / (1000 * 60 * 60));
+                const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+                
+                // Format time string
+                const timeString = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                document.getElementById('qr-countdown').textContent = timeString;
+                
+                // Change color based on time remaining
+                if (timeRemaining < 5 * 60 * 1000) { // Less than 5 minutes
+                    document.getElementById('qr-countdown').style.color = '#e74c3c';
+                } else if (timeRemaining < 15 * 60 * 1000) { // Less than 15 minutes
+                    document.getElementById('qr-countdown').style.color = '#FF9800';
+                } else {
+                    document.getElementById('qr-countdown').style.color = '#27ae60';
+                }
+            }, 1000);
+        }
+        
+        // Refresh QR code button - only works after 2 hours or when expired
+        document.getElementById('refresh-qr').addEventListener('click', function(e) {
+            const now = new Date();
+            const timeRemaining = qrExpiryTime - now;
+            
+            // Only allow refresh if expired or nearly expired
+            if (timeRemaining > 0 && timeRemaining > 30000) { // 30 seconds buffer before expiry
+                const hoursLeft = Math.floor(timeRemaining / (1000 * 60 * 60));
+                const minutesLeft = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+                alert(`⏱️ QR code is still valid for ${hoursLeft}h ${minutesLeft}m. You can only refresh when it expires.`);
+                return;
+            }
+            
+            // Refresh the QR code
+            generateQRCode();
+            this.style.background = 'linear-gradient(to right, #3b82f6, #2563eb)';
+            this.innerHTML = '<i class="fas fa-sync-alt"></i> Refresh QR Code';
+            alert('✅ QR Code refreshed successfully!');
         });
         
-        // KYC upload buttons
-        document.querySelectorAll('.upload-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const card = this.closest('.upload-card');
-                const title = card.querySelector('.upload-title').textContent;
-                alert(`Simulating ${title} upload...`);
-                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Uploading...';
-                this.disabled = true;
-                
-                setTimeout(() => {
-                    this.innerHTML = '<i class="fas fa-check"></i> Uploaded';
-                    this.style.background = 'linear-gradient(to right, #2ecc71, #27ae60)';
-                    
-                    setTimeout(() => {
-                        this.innerHTML = 'Upload File';
-                        this.style.background = '';
-                        this.disabled = false;
-                    }, 2000);
-                }, 1500);
+        // Show notifications
+        function showNotifications() {
+            alert('You have 2 notifications:\n1. Your trip to Tao is confirmed\n2. New shuttle route available');
+        }
+        
+        // Initialize
+        updateValidTime();
+        generateQRCode(); // Generate initial QR code when page loads
+        setInterval(updateValidTime, 60000); // Update every minute
+
+        
+// Show route information
+function showRoute(routeInfo) {
+    document.getElementById('route-info').innerText = routeInfo;
+}
+
+        // Route data with coordinates (Nairobi, Kenya)
+        const routeData = {
+            tao: {
+                name: 'Tao',
+                description: 'Starting point - Tao Bus Station',
+                lat: -1.2831,
+                lng: 36.8172,
+                distance: '0 km',
+                time: '0 min',
+                color: '#FF6B6B'
+            },
+            afya: {
+                name: 'Afya Center',
+                description: 'Medical Hub - Afya Center',
+                lat: -1.2921,
+                lng: 36.8219,
+                distance: '1.2 km',
+                time: '8 min',
+                color: '#4ECDC4'
+            },
+            uhuru: {
+                name: 'Uhuru Park',
+                description: 'Historic Park - Uhuru Park',
+                lat: -1.2865,
+                lng: 36.8087,
+                distance: '2.8 km',
+                time: '18 min',
+                color: '#45B7D1'
+            },
+            moi: {
+                name: 'Moi Avenue',
+                description: 'Business District - Moi Avenue',
+                lat: -1.2793,
+                lng: 36.8156,
+                distance: '1.5 km',
+                time: '10 min',
+                color: '#96CEB4'
+            },
+            nyayo: {
+                name: 'Nyayo',
+                description: 'Residential Area - Nyayo Estate',
+                lat: -1.2958,
+                lng: 36.8247,
+                distance: '3.2 km',
+                time: '21 min',
+                color: '#FFEAA7'
+            },
+            harambee: {
+                name: 'Harambee',
+                description: 'City Center - Harambee Avenue',
+                lat: -1.2833,
+                lng: 36.8209,
+                distance: '2.0 km',
+                time: '13 min',
+                color: '#DDA15E'
+            }
+        };
+
+        // Global map variable
+        let currentMap = null;
+        let currentRoute = null;
+        let routeMarkers = [];
+        let routeLine = null;
+
+        // Show location route
+        function showLocationRoute(location) {
+            const route = routeData[location];
+            if (!route) return;
+
+            currentRoute = location;
+            const mapContainer = document.getElementById('route-map-container');
+            mapContainer.style.display = 'block';
+
+            // Update route details
+            document.getElementById('route-name').textContent = `Route to ${route.name}`;
+            document.getElementById('route-description').textContent = route.description;
+            document.getElementById('route-distance').textContent = route.distance;
+            document.getElementById('route-time').textContent = route.time;
+            document.getElementById('route-coords').textContent = `${route.lat.toFixed(4)}, ${route.lng.toFixed(4)}`;
+
+            // Initialize map
+            setTimeout(() => {
+                initializeMap(location);
+            }, 100);
+
+            // Scroll to map
+            mapContainer.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Initialize Leaflet map
+        function initializeMap(location) {
+            const route = routeData[location];
+            const mapElement = document.getElementById('route-map');
+
+            // Destroy existing map if present
+            if (currentMap) {
+                currentMap.remove();
+                currentMap = null;
+            }
+
+            // Create new map centered on the location
+            currentMap = L.map('route-map').setView([route.lat, route.lng], 15);
+
+            // Add OpenStreetMap tiles
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors',
+                maxZoom: 19
+            }).addTo(currentMap);
+
+            // Clear previous markers
+            routeMarkers.forEach(marker => marker.remove());
+            routeMarkers = [];
+
+            // Add markers for all locations
+            const locations = Object.keys(routeData);
+            
+            // Add start point marker (Tao)
+            const startRoute = routeData['tao'];
+            L.circleMarker([startRoute.lat, startRoute.lng], {
+                radius: 8,
+                fillColor: '#FF6B6B',
+                color: '#fff',
+                weight: 2,
+                opacity: 1,
+                fillOpacity: 0.8
+            }).addTo(currentMap)
+            .bindPopup(`<b>${startRoute.name}</b><br>${startRoute.description}`);
+
+            // Add current location marker
+            const customIcon = L.divIcon({
+                className: 'location-marker',
+                html: `<div style="background-color: ${route.color}; width: 32px; height: 32px; border-radius: 50%; border: 3px solid white; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 8px rgba(0,0,0,0.3);"><i class="fas fa-bus" style="color: white; font-size: 16px;"></i></div>`,
+                iconSize: [32, 32],
+                iconAnchor: [16, 16]
             });
+
+            L.marker([route.lat, route.lng], { icon: customIcon })
+                .addTo(currentMap)
+                .bindPopup(`<b>${route.name}</b><br>${route.description}`, { autoClose: false })
+                .openPopup();
+
+            // Add other destination markers
+            locations.forEach(loc => {
+                if (loc !== location && loc !== 'tao') {
+                    const destRoute = routeData[loc];
+                    L.circleMarker([destRoute.lat, destRoute.lng], {
+                        radius: 6,
+                        fillColor: destRoute.color,
+                        color: '#fff',
+                        weight: 2,
+                        opacity: 0.7,
+                        fillOpacity: 0.6
+                    }).addTo(currentMap)
+                    .bindPopup(`<b>${destRoute.name}</b><br>${destRoute.description}`);
+                }
+            });
+
+            // Draw route line from Tao to selected location
+            const routePath = [
+                [startRoute.lat, startRoute.lng],
+                [route.lat, route.lng]
+            ];
+
+            if (routeLine) {
+                currentMap.removeLayer(routeLine);
+            }
+
+            routeLine = L.polyline(routePath, {
+                color: route.color,
+                weight: 3,
+                opacity: 0.8,
+                dashArray: '5, 5'
+            }).addTo(currentMap);
+
+            // Fit map bounds to show route
+            const group = new L.featureGroup([
+                L.marker([startRoute.lat, startRoute.lng]),
+                L.marker([route.lat, route.lng])
+            ]);
+            currentMap.fitBounds(group.getBounds().pad(0.1));
+        }
+
+        // ========== KYC AND PROFILE FUNCTIONS ==========
+
+        // Check if KYC is already verified
+        let kycVerified = false;
+        let userKYCData = null;
+
+        // Initialize profile section based on KYC status
+        function initializeProfileSection() {
+            const profileView = document.getElementById('profile-view');
+            const kycFormView = document.getElementById('kyc-form-view');
+            
+            if (kycVerified && userKYCData) {
+                profileView.style.display = 'block';
+                kycFormView.style.display = 'none';
+                displayVerifiedProfile();
+            } else {
+                profileView.style.display = 'none';
+                kycFormView.style.display = 'block';
+            }
+        }
+
+        // Show KYC form
+        function showKYCForm() {
+            document.getElementById('profile-view').style.display = 'none';
+            document.getElementById('kyc-form-view').style.display = 'block';
+        }
+
+        // Edit profile
+        function editProfile() {
+            alert('Redirecting to edit profile...');
+        }
+
+        // Setup file input handlers
+        function setupFileInputs() {
+            // ID Document file handler
+            const idDocInput = document.getElementById('kyc-iddoc');
+            if (idDocInput) {
+                idDocInput.addEventListener('change', function(e) {
+                    const fileName = this.files[0]?.name || 'No file selected';
+                    document.getElementById('iddoc-name').textContent = fileName;
+                });
+            }
+
+            // Passport Photo file handler
+            const passportInput = document.getElementById('kyc-passport');
+            if (passportInput) {
+                passportInput.addEventListener('change', function(e) {
+                    const fileName = this.files[0]?.name || 'No file selected';
+                    document.getElementById('passport-name').textContent = fileName;
+                });
+            }
+
+            // Selfie Photo file handler
+            const selfieInput = document.getElementById('kyc-selfie');
+            if (selfieInput) {
+                selfieInput.addEventListener('change', function(e) {
+                    const fileName = this.files[0]?.name || 'No file selected';
+                    document.getElementById('selfie-name').textContent = fileName;
+                });
+            }
+        }
+
+        // Setup card number formatting
+        function setupCardFormatting() {
+            const cardInput = document.getElementById('kyc-cardnumber');
+            if (cardInput) {
+                cardInput.addEventListener('input', function(e) {
+                    let value = e.target.value.replace(/\s/g, '');
+                    let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
+                    e.target.value = formattedValue;
+                });
+            }
+
+            const expiryInput = document.getElementById('kyc-cardexpiry');
+            if (expiryInput) {
+                expiryInput.addEventListener('input', function(e) {
+                    let value = e.target.value.replace(/\D/g, '');
+                    if (value.length >= 2) {
+                        value = value.substring(0, 2) + '/' + value.substring(2, 4);
+                    }
+                    e.target.value = value;
+                });
+            }
+        }
+
+        // Initialize all on page load
+        window.addEventListener('load', function() {
+            setupFileInputs();
+            setupCardFormatting();
         });
+
+        // Also try setting up when script loads
+        setTimeout(function() {
+            if (!window.fileInputsSetup) {
+                setupFileInputs();
+                setupCardFormatting();
+                window.fileInputsSetup = true;
+            }
+        }, 100);
+
+        // Submit KYC Form
+        function submitKYCForm() {
+            // Get form data
+            const fullname = document.getElementById('kyc-fullname').value;
+            const email = document.getElementById('kyc-email').value;
+            const phone = document.getElementById('kyc-phone').value;
+            const dob = document.getElementById('kyc-dob').value;
+            const idtype = document.getElementById('kyc-idtype').value;
+            const idnumber = document.getElementById('kyc-idnumber').value;
+            const address = document.getElementById('kyc-address').value;
+            const cardholder = document.getElementById('kyc-cardholder').value;
+            const cardnumber = document.getElementById('kyc-cardnumber').value;
+            const cardexpiry = document.getElementById('kyc-cardexpiry').value;
+            const consent1 = document.getElementById('consent-privacy').checked;
+            const consent2 = document.getElementById('consent-kyc').checked;
+
+            // File inputs
+            const idDocFile = document.getElementById('kyc-iddoc').files[0];
+            const passportFile = document.getElementById('kyc-passport').files[0];
+            const selfieFile = document.getElementById('kyc-selfie').files[0];
+
+            // Validation
+            if (!fullname || !email || !phone || !dob || !idtype || !idnumber || !address) {
+                alert('Please fill in all required personal information fields');
+                return;
+            }
+
+            if (!idDocFile || !passportFile || !selfieFile) {
+                alert('Please upload all required documents: ID, Passport Photo, and Selfie');
+                return;
+            }
+
+            if (!consent1 || !consent2) {
+                alert('Please agree to the terms and declare that the information is accurate');
+                return;
+            }
+
+            // Simulate file reading for images
+            let passportData = null;
+            let selfieData = null;
+
+            const passportReader = new FileReader();
+            passportReader.onload = function(e) {
+                passportData = e.target.result;
+                
+                const selfieReader = new FileReader();
+                selfieReader.onload = function(e) {
+                    selfieData = e.target.result;
+                    
+                    // Store KYC data
+                    userKYCData = {
+                        fullname: fullname,
+                        email: email,
+                        phone: phone,
+                        dob: dob,
+                        idtype: idtype,
+                        idnumber: idnumber,
+                        address: address,
+                        cardholder: cardholder,
+                        cardnumber: cardnumber,
+                        cardexpiry: cardexpiry,
+                        passportImage: passportData,
+                        selfieImage: selfieData,
+                        iddocName: idDocFile.name,
+                        verificationDate: new Date().toLocaleDateString('en-US', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric'
+                        })
+                    };
+
+                    // Mark as verified
+                    kycVerified = true;
+
+                    // Show success message
+                    alert('KYC verification submitted successfully!\n\nYour account has been verified and you can now access all features.');
+
+                    // Update UI - reload profile if currently viewing
+                    if (document.getElementById('profile-content').classList.contains('active')) {
+                        initializeProfileSection();
+                    }
+                };
+                selfieReader.readAsDataURL(selfieFile);
+            };
+            passportReader.readAsDataURL(passportFile);
+        }
+
+        // Display verified profile
+        function displayVerifiedProfile() {
+            if (!userKYCData) return;
+
+            // Personal Information
+            document.getElementById('profile-username').textContent = userKYCData.fullname;
+            document.getElementById('verified-fullname').textContent = userKYCData.fullname;
+            document.getElementById('verified-email').textContent = userKYCData.email;
+            document.getElementById('verified-phone').textContent = userKYCData.phone;
+            document.getElementById('verified-dob').textContent = new Date(userKYCData.dob).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+
+            // ID Information
+            document.getElementById('verified-idtype').textContent = userKYCData.idtype.replace('-', ' ').toUpperCase();
+            document.getElementById('verified-idnumber').textContent = userKYCData.idnumber;
+            document.getElementById('verified-iddoc-name').textContent = userKYCData.iddocName;
+
+            // Images
+            if (userKYCData.passportImage) {
+                document.getElementById('verified-passport').src = userKYCData.passportImage;
+            }
+            if (userKYCData.selfieImage) {
+                document.getElementById('verified-selfie').src = userKYCData.selfieImage;
+            }
+
+            // Card Information
+            if (userKYCData.cardnumber) {
+                const lastFour = userKYCData.cardnumber.replace(/\s/g, '').slice(-4);
+                document.getElementById('verified-cardlast4').textContent = `•••• •••• •••• ${lastFour}`;
+                document.getElementById('verified-cardholder').textContent = userKYCData.cardholder || '-';
+            }
+
+            // Additional Information
+            document.getElementById('verified-address').textContent = userKYCData.address;
+            document.getElementById('verified-date').textContent = userKYCData.verificationDate;
+        }
+
+        // Old KYC functions (kept for compatibility)
+        function uploadID() {
+            document.getElementById('kyc-iddoc').click();
+        }
+
+        function takeSelfie() {
+            document.getElementById('kyc-selfie').click();
+        }
+
+        function submitKYC() {
+            submitKYCForm();
+        }
+
+        // ========== BLE TRACKER FOR BUSES ==========
+
+        // BLE Scanner variables
+        let bleScanning = false;
+        let bleDevices = new Map();
+        let bleScanAbortController = null;
+
+        // Bus UUID (must match the bus tracker UUID)
+        const BUS_TRACKER_UUID = '180a'; // Use generic UUID for testing
+
+        // Check if Web Bluetooth is supported
+        function checkBLESupport() {
+            if (!navigator.bluetooth) {
+                document.getElementById('browser-warning').style.display = 'flex';
+                document.getElementById('ble-scan-btn').disabled = true;
+                return false;
+            }
+            return true;
+        }
+
+        // Start BLE scanning
+        async function startBLEScan() {
+            try {
+                if (!navigator.bluetooth) {
+                    alert('Web Bluetooth is not supported on this device');
+                    return;
+                }
+
+                bleScanning = true;
+                bleDevices.clear();
+                bleScanAbortController = new AbortController();
+
+                // Update UI
+                document.getElementById('ble-scan-btn').style.display = 'none';
+                document.getElementById('ble-stop-btn').style.display = 'flex';
+                document.getElementById('scanner-status').style.display = 'flex';
+                document.getElementById('buses-list').innerHTML = '';
+
+                // Start scanning for BLE advertisements
+                const options = {
+                    acceptAllAdvertisements: true,
+                    signal: bleScanAbortController.signal
+                };
+
+                const scanner = await navigator.bluetooth.requestLEScan(options);
+
+                // Handle advertisements
+                navigator.bluetooth.addEventListener('advertisementreceived', handleBLEAdvertisement);
+
+                // Update UI with scanning started
+                updateScannerStatus('Scanning for nearby buses...', 0);
+
+            } catch (error) {
+                if (error.name !== 'NotAllowedError') {
+                    console.error('BLE Scan error:', error);
+                    alert('Error starting BLE scan: ' + error.message);
+                }
+                stopBLEScan();
+            }
+        }
+
+        // Stop BLE scanning
+        function stopBLEScan() {
+            bleScanning = false;
+            
+            if (bleScanAbortController) {
+                bleScanAbortController.abort();
+            }
+
+            navigator.bluetooth.removeEventListener('advertisementreceived', handleBLEAdvertisement);
+
+            // Update UI
+            document.getElementById('ble-scan-btn').style.display = 'flex';
+            document.getElementById('ble-stop-btn').style.display = 'none';
+            document.getElementById('scanner-status').style.display = 'none';
+        }
+
+        // Handle BLE advertisement
+        function handleBLEAdvertisement(event) {
+            const device = event.device;
+            const rssi = event.rssi;
+
+            // Check if device has a name (potential bus)
+            if (device.name && (device.name.includes('BUS') || device.name.includes('Shuttle'))) {
+                const deviceId = device.id || device.address || `device-${Date.now()}`;
+
+                // Store or update device info
+                if (!bleDevices.has(deviceId)) {
+                    bleDevices.set(deviceId, {
+                        id: deviceId,
+                        name: device.name || 'Unknown Bus',
+                        rssi: rssi,
+                        txPower: event.txPower || -59,
+                        lastUpdate: Date.now(),
+                        connectable: event.connectable
+                    });
+                } else {
+                    // Update RSSI for existing device
+                    const existing = bleDevices.get(deviceId);
+                    existing.rssi = rssi;
+                    existing.lastUpdate = Date.now();
+                }
+
+                // Update UI
+                updateBusesList();
+                updateScannerStatus('Scanning for nearby buses...', bleDevices.size);
+            }
+        }
+
+        // Update buses list UI
+        function updateBusesList() {
+            const busesList = document.getElementById('buses-list');
+
+            if (bleDevices.size === 0) {
+                busesList.innerHTML = '<p class="no-buses-message">No buses detected yet. Make sure bus trackers are nearby.</p>';
+                return;
+            }
+
+            busesList.innerHTML = '';
+
+            // Sort by signal strength (strongest first)
+            const sortedDevices = Array.from(bleDevices.values())
+                .sort((a, b) => b.rssi - a.rssi);
+
+            sortedDevices.forEach((device, index) => {
+                const distance = calculateDistance(device.rssi, device.txPower);
+                const signalStrength = getSignalStrength(device.rssi);
+                const signalBars = getSignalBars(signalStrength);
+
+                const busCard = document.createElement('div');
+                busCard.className = 'bus-card';
+                busCard.innerHTML = `
+                    <div class="bus-header">
+                        <div class="bus-info">
+                            <p class="bus-name"><i class="fas fa-bus"></i> ${device.name}</p>
+                            <p class="bus-id">ID: ${device.id.substring(0, 12)}...</p>
+                        </div>
+                        <div class="signal-badge">
+                            <div class="signal-bars">
+                                ${signalBars}
+                            </div>
+                            <span>${signalStrength}%</span>
+                        </div>
+                    </div>
+
+                    <div class="bus-details">
+                        <div class="detail-row">
+                            <span class="detail-label">Distance</span>
+                            <span class="detail-value">${distance.toFixed(1)} meters</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Signal Strength</span>
+                            <span class="detail-value">${device.rssi} dBm</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Route</span>
+                            <span class="detail-value">${getRouteFromId(device.name)}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Status</span>
+                            <span class="detail-value"><i class="fas fa-check-circle" style="color: #4CAF50;"></i> Active</span>
+                        </div>
+                    </div>
+
+                    <div class="distance-meter">
+                        <div class="distance-fill" style="width: ${Math.min(100, (150 - distance) / 150 * 100)}%"></div>
+                    </div>
+
+                    <div class="bus-footer">
+                        <div class="bus-status">
+                            <i class="fas fa-signal"></i>
+                            Approaching
+                        </div>
+                        <button class="bus-action" onclick="viewBusRoute('${device.name}')">
+                            <i class="fas fa-map"></i> View Route
+                        </button>
+                    </div>
+                `;
+
+                busesList.appendChild(busCard);
+            });
+        }
+
+        // Calculate distance from RSSI using free-space path loss
+        function calculateDistance(rssi, txPower) {
+            if (!txPower) txPower = -59; // Default TX power in dBm at 1 meter
+
+            // Formula: distance = 10^((txPower - rssi) / (10 * n))
+            // where n is the path loss exponent (typically 2 for free space)
+            const n = 2;
+            const distance = Math.pow(10, (txPower - rssi) / (10 * n));
+
+            return Math.max(0, Math.min(200, distance)); // Clamp between 0-200 meters
+        }
+
+        // Get signal strength percentage
+        function getSignalStrength(rssi) {
+            // RSSI ranges from -30 (excellent) to -100 (poor)
+            // Convert to 0-100%
+            if (rssi >= -30) return 100;
+            if (rssi <= -100) return 0;
+            return Math.round((rssi + 100) * 100 / 70);
+        }
+
+        // Get signal bars HTML
+        function getSignalBars(strength) {
+            let bars = '';
+            const barCount = Math.ceil(strength / 20);
+
+            for (let i = 0; i < 5; i++) {
+                if (i < barCount) {
+                    bars += '<div class="signal-bar active"></div>';
+                } else {
+                    bars += '<div class="signal-bar"></div>';
+                }
+            }
+
+            return bars;
+        }
+
+        // Get route based on bus name/ID
+        function getRouteFromId(busName) {
+            const routeMap = {
+                'BUS1': 'Tao → Uhuru Park',
+                'BUS2': 'Afya Center → Moi Avenue',
+                'BUS3': 'Nyayo → Harambee',
+                'BUS12': 'CBD Route',
+                'BUS18': 'Westlands Route',
+                'BUS25': 'Airport Route'
+            };
+
+            // Try to extract bus number and match
+            const match = busName.match(/\d+/);
+            if (match) {
+                const num = 'BUS' + match[0];
+                return routeMap[num] || 'Main Route';
+            }
+
+            return 'Main Route';
+        }
+
+        // View bus route
+        function viewBusRoute(busName) {
+            alert(`Viewing route for ${busName}. Switching to Routes tab...`);
+            showSection('routes-content');
+        }
+
+        // Update scanner status
+        function updateScannerStatus(message, deviceCount) {
+            document.getElementById('status-message').textContent = message;
+            document.getElementById('device-count').textContent = `Devices found: ${deviceCount}`;
+        }
+
+        // Initialize demo buses (fallback when BLE not available)
+        function initializeDemoBuses() {
+            const demoBuses = [
+                {
+                    name: 'Bus 12',
+                    id: 'BUS-001-CBD',
+                    route: 'Tao → Uhuru Park',
+                    distance: 0.8,
+                    rssi: -45,
+                    status: 'Arriving in 2 min'
+                },
+                {
+                    name: 'Bus 18',
+                    id: 'BUS-002-WEST',
+                    route: 'Afya Center → Moi Avenue',
+                    distance: 1.2,
+                    rssi: -52,
+                    status: 'Arriving in 4 min'
+                },
+                {
+                    name: 'Bus 25',
+                    id: 'BUS-003-AIR',
+                    route: 'Nyayo → Harambee',
+                    distance: 2.1,
+                    rssi: -68,
+                    status: 'Arriving in 7 min'
+                }
+            ];
+
+            const demoBusesContainer = document.getElementById('demo-buses');
+            demoBusesContainer.innerHTML = '';
+
+            demoBuses.forEach(bus => {
+                const signalStrength = getSignalStrength(bus.rssi);
+                const signalBars = getSignalBars(signalStrength);
+
+                const busCard = document.createElement('div');
+                busCard.className = 'bus-card';
+                busCard.innerHTML = `
+                    <div class="bus-header">
+                        <div class="bus-info">
+                            <p class="bus-name"><i class="fas fa-bus"></i> ${bus.name}</p>
+                            <p class="bus-id">ID: ${bus.id}</p>
+                        </div>
+                        <div class="signal-badge">
+                            <div class="signal-bars">
+                                ${signalBars}
+                            </div>
+                            <span>${signalStrength}%</span>
+                        </div>
+                    </div>
+
+                    <div class="bus-details">
+                        <div class="detail-row">
+                            <span class="detail-label">Distance</span>
+                            <span class="detail-value">${bus.distance.toFixed(1)} km</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Route</span>
+                            <span class="detail-value">${bus.route}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Signal</span>
+                            <span class="detail-value">${bus.rssi} dBm</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">ETA</span>
+                            <span class="detail-value" style="color: #FF9800; font-weight: 700;">${bus.status}</span>
+                        </div>
+                    </div>
+
+                    <div class="distance-meter">
+                        <div class="distance-fill" style="width: ${Math.min(100, (1 - bus.distance) / 3 * 100)}%"></div>
+                    </div>
+
+                    <div class="bus-footer">
+                        <div class="bus-status">
+                            <i class="fas fa-signal"></i>
+                            Live Tracking
+                        </div>
+                        <button class="bus-action" onclick="viewBusRoute('${bus.name}')">
+                            <i class="fas fa-map"></i> View Route
+                        </button>
+                    </div>
+                `;
+
+                demoBusesContainer.appendChild(busCard);
+            });
+        }
+
+        // Initialize BLE support check on page load
+        window.addEventListener('load', function() {
+            checkBLESupport();
+            initializeDemoBuses();
+
+        });
+
+        setTimeout(function() {
+            checkBLESupport();
+            initializeDemoBuses();
+        }, 500);
     </script>
 </body>
 </html>

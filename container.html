@@ -1,1012 +1,3 @@
-.login-container {
-    min-height: 600px;
-    padding: 0;
-}
-
-.login-header {
-    padding: 40px 20px 30px;
-    text-align: center;
-}
-
-.login-title {
-    font-size: 28px;
-    font-weight: 700;
-    color: white;
-    margin-bottom: 10px;
-}
-
-.login-subtitle {
-    font-size: 16px;
-    opacity: 0.9;
-    font-weight: 400;
-}
-
-.login-form {
-    padding: 30px 25px;
-}
-
-.login-option {
-    background: linear-gradient(to right, #f9f5f0, #f5efe8);
-    border-radius: 12px;
-    padding: 18px;
-    margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    transition: all 0.3s;
-    border: 2px solid #e0d4c8;
-}
-
-.login-option:hover {
-    transform: translateY(-3px);
-    border-color: #0b7d07;
-    box-shadow: 0 5px 15px rgba(139, 69, 19, 0.1);
-}
-
-.login-icon {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 15px;
-    font-size: 22px;
-    color: white;
-}
-
-.login-icon.google {
-    background: linear-gradient(135deg, #4285F4, #34A853);
-}
-
-.login-icon.facebook {
-    background: linear-gradient(135deg, #1877F2, #0D5FA6);
-}
-
-.login-icon.email {
-    background: linear-gradient(135deg, #8B4513, #A0522D);
-}
-
-.login-icon.phone {
-    background: linear-gradient(135deg, #25D366, #128C7E);
-}
-
-.login-text h3 {
-    font-size: 18px;
-    font-weight: 700;
-    color: #5D4037;
-    margin-bottom: 5px;
-}
-
-.login-text p {
-    font-size: 13px;
-    color: #8B4513;
-}
-
-.divider {
-    display: flex;
-    align-items: center;
-    margin: 25px 0;
-    color: #8B4513;
-    font-size: 14px;
-}
-
-.divider::before,
-.divider::after {
-    content: "";
-    flex: 1;
-    height: 1px;
-    background: #e0d4c8;
-}
-
-.divider span {
-    padding: 0 15px;
-}
-
-.input-group {
-    margin-bottom: 20px;
-}
-
-.input-label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
-    color: #5D4037;
-    font-size: 14px;
-}
-
-.input-field {
-    width: 100%;
-    padding: 16px;
-    border-radius: 10px;
-    border: 2px solid #e0d4c8;
-    font-size: 16px;
-    background: #f9f5f0;
-    color: #5D4037;
-    transition: all 0.3s;
-}
-
-.input-field:focus {
-    outline: none;
-    border-color: #8B4513;
-    background: white;
-}
-
-.password-toggle {
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    color: #8B4513;
-    cursor: pointer;
-}
-
-.password-container {
-    position: relative;
-}
-
-.forgot-link {
-    display: block;
-    text-align: right;
-    color: #8B4513;
-    font-size: 14px;
-    margin-top: 10px;
-    text-decoration: none;
-    font-weight: 600;
-}
-
-.forgot-link:hover {
-    text-decoration: underline;
-}
-
-.signup-link {
-    text-align: center;
-    margin-top: 25px;
-    color: #5D4037;
-    font-size: 14px;
-}
-
-.signup-link a {
-    color: #8B4513;
-    font-weight: 700;
-    text-decoration: none;
-}
-
-.signup-link a:hover {
-    text-decoration: underline;
-}
-
-.login-btn {
-    width: 100%;
-    padding: 18px;
-    background: linear-gradient(to right, #8B4513, #A0522D);
-    color: white;
-    border: none;
-    border-radius: 12px;
-    font-weight: 700;
-    font-size: 16px;
-    cursor: pointer;
-    transition: all 0.3s;
-    margin-top: 10px;
-}
-
-.login-btn:hover {
-    background: linear-gradient(to right, #A0522D, #C19A6B);
-    transform: translateY(-2px);
-}
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', system-ui, sans-serif;
-        }
-        
-        body {
-            background: linear-gradient(135deg, #292b28 0%, #f0e6e0 100%);
-            color: #333;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-        }
-        
-        .app-container {
-            width: 100%;
-            max-width: 400px;
-            background-color: white;
-            border-radius: 24px;
-            box-shadow: 0 12px 30px rgba(103, 125, 84, 0.15);
-            overflow: hidden;
-            margin-top: 20px;
-        }
-        
-        /* Header and Logo */
-        .app-header {
-            background: linear-gradient(to right, #138b13, #b05d09, #C19A6B);
-            color: white;
-            padding: 24px 20px;
-            text-align: center;
-            position: relative;
-        }
-        
-        .logo-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 15px;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            font-size: 42px;
-        }
-        
-        .logo-c {
-            display: inline-block;
-            position: relative;
-            width: 50px;
-            height: 50px;
-            border: 5px solid green;
-            border-radius: 50%;
-            border-right-color: transparent;
-            margin-right: 5px;
-        }
-        
-        .logo-plus {
-            position: absolute;
-            font-size: 24px;
-            color: white;
-            font-weight: 700;
-            top: 12px;
-            left: 15px;
-        }
-        
-        .logo-y {
-            color: beige;
-            font-size: 42px;
-            font-weight: 800;
-            margin-left: -8px;
-        }
-        
-        .app-title {
-            font-size: 24px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            margin-bottom: 5px;
-        }
-        
-        .app-subtitle {
-            font-size: 14px;
-            opacity: 0.9;
-            font-weight: 400;
-        }
-        
-        /* Navigation */
-        .nav-tabs {
-            display: flex;
-            background: linear-gradient(to right, #f8f1eb, #f5ebe0);
-            border-bottom: 1px solid #e0d4c8;
-            overflow-x: auto;
-        }
-        
-        .nav-tab {
-            flex: 1;
-            min-width: 80px;
-            text-align: center;
-            padding: 16px 5px;
-            font-weight: 600;
-            font-size: 14px;
-            color: #02b741;
-            cursor: pointer;
-            transition: all 0.3s;
-            white-space: nowrap;
-        }
-        
-        .nav-tab.active {
-            color: rgb(33, 31, 31);
-            background: linear-gradient(to bottom, #138b33, #017410);
-            border-bottom: 3px solid beige;
-        }
-        
-        /* Content Sections */
-        .tab-content {
-            display: none;
-            padding: 0;
-            min-height: 500px;
-        }
-        
-        .tab-content.active {
-            display: block;
-        }
-        
-        /* Home Page */
-        .welcome-section {
-            padding: 24px 20px;
-            background: linear-gradient(to right, #f9f5f0, #f5efe8);
-            border-bottom: 1px solid #eae0d5;
-        }
-        
-        .welcome-text {
-            font-size: 18px;
-            color: black;
-            margin-bottom: 5px;
-        }
-        
-        .user-name {
-            font-size: 24px;
-            font-weight: 700;
-            color: black;
-        }
-        
-        .subscription-card {
-            background: linear-gradient(135deg, #1d8b13 0%, #A0522D 100%);
-            color: white;
-            margin: 20px;
-            border-radius: 16px;
-            padding: 20px;
-            box-shadow: 0 8px 16px rgba(12, 227, 62, 0.2);
-        }
-        
-        .plan-name {
-            font-size: 22px;
-            font-weight: 700;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        
-        .plan-price {
-            font-size: 32px;
-            font-weight: 800;
-            margin: 15px 0;
-        }
-        
-        .plan-details {
-            font-size: 15px;
-            line-height: 1.5;
-            opacity: 0.9;
-            margin-bottom: 20px;
-        }
-        
-        .subscribe-btn {
-            background-color: white;
-            color:beige;
-            border: none;
-            padding: 14px 24px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 16px;
-            width: 100%;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .subscribe-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .subscribe-btn i {
-            margin-right: 8px;
-        }
-        
-        /* QR Code Section */
-        .qr-section {
-            padding: 20px;
-            text-align: center;
-            border-top: 1px solid green;
-        }
-        
-        .section-title {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: #08e731;
-            text-align: left;
-        }
-        
-        .qr-container {
-            background: linear-gradient(to bottom, white, #f9f5f0);
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 5px 15px rgba(139, 69, 19, 0.08);
-            margin-bottom: 20px;
-            border: 2px dashed #D7CCC8;
-        }
-        
-        .qr-code {
-            width: 180px;
-            height: 180px;
-            background-color: #f8f8f8;
-            margin: 0 auto 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 8px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .qr-code::before {
-            content: "";
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: 
-                linear-gradient(90deg, transparent 49%, #138b21 49%, #138b17 51%, transparent 51%),
-                linear-gradient(0deg, transparent 49%, #04c571 49%, #138b3d 51%, transparent 51%);
-            background-size: 20px 20px;
-        }
-        
-        .qr-code::after {
-            content: "C+";
-            position: absolute;
-            background-color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            color: #1cba00;
-            font-size: 18px;
-            border: 2px solid #138b33;
-        }
-        
-        .trip-info {
-            display: flex;
-            justify-content: space-between;
-            background: linear-gradient(to right, #f9f5f0, #f5efe8);
-            padding: 15px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            border: 1px solid #e0d4c8;
-        }
-        
-        .trip-count {
-            text-align: center;
-        }
-        
-        .count-number {
-            font-size: 32px;
-            font-weight: 800;
-            color: #138b1b;
-            line-height: 1;
-        }
-        
-        .count-label {
-            font-size: 14px;
-            color: #8B4513;
-            margin-top: 5px;
-            font-weight: 600;
-        }
-        
-        .valid-until {
-            background: linear-gradient(to right, #f0f7ff, #e8f2ff);
-            padding: 15px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            text-align: center;
-            border-left: 4px solid #8B4513;
-        }
-        
-        .valid-text {
-            font-size: 14px;
-            color: #5D4037;
-            margin-bottom: 5px;
-        }
-        
-        .valid-time {
-            font-size: 18px;
-            font-weight: 700;
-            color: #8B4513;
-        }
-        
-        /* Profile Page */
-        .profile-section {
-            padding: 20px;
-        }
-        
-        .profile-info {
-            display: flex;
-            align-items: center;
-            margin-bottom: 25px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #eae0d5;
-        }
-        
-        .profile-avatar {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, #8B4513, #A0522D);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 28px;
-            font-weight: 700;
-            margin-right: 15px;
-        }
-        
-        .profile-details h3 {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 5px;
-            color: #5D4037;
-        }
-        
-        .profile-details p {
-            color: #8B4513;
-            font-size: 14px;
-        }
-        
-        .info-card {
-            background: linear-gradient(to right, #f9f5f0, #f5efe8);
-            border-radius: 12px;
-            padding: 18px;
-            margin-bottom: 15px;
-            border-left: 4px solid #8B4513;
-        }
-        
-        .info-title {
-            font-size: 14px;
-            color: #8B4513;
-            margin-bottom: 5px;
-            font-weight: 600;
-        }
-        
-        .info-value {
-            font-size: 18px;
-            font-weight: 600;
-            color: #5D4037;
-        }
-        
-        .action-btn {
-            display: block;
-            width: 100%;
-            padding: 16px;
-            background: linear-gradient(to right, #8B4513, #A0522D);
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 16px;
-            margin-top: 10px;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-align: center;
-        }
-        
-        .action-btn:hover {
-            background: linear-gradient(to right, #A0522D, #C19A6B);
-            transform: translateY(-2px);
-        }
-        
-        /* Payment Methods Page */
-        .payment-section {
-            padding: 20px;
-        }
-        
-        .notice-card {
-            background: linear-gradient(to right, #6ff451, #938863);
-            border-radius: 12px;
-            padding: 18px;
-            margin-bottom: 25px;
-            border-left: 4px solid #ffc107;
-        }
-        
-        .notice-title {
-            font-size: 18px;
-            font-weight: 700;
-            color: #5D4037;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .notice-title i {
-            margin-right: 10px;
-            color: #ff9800;
-        }
-        
-        .payment-options {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-bottom: 25px;
-        }
-        
-        .payment-option {
-            flex: 1;
-            min-width: 150px;
-            background: linear-gradient(to right, #f9f5f0, #f5efe8);
-            border-radius: 12px;
-            padding: 20px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s;
-            border: 2px solid #e0d4c8;
-        }
-        
-        .payment-option:hover {
-            transform: translateY(-5px);
-            border-color: #8B4513;
-            box-shadow: 0 5px 15px rgba(139, 69, 19, 0.1);
-        }
-        
-        .payment-option.active {
-            border-color: #8B4513;
-            background: linear-gradient(to right, #f5efe8, #f0e6d6);
-        }
-        
-        .payment-icon {
-            font-size: 32px;
-            color: #8B4513;
-            margin-bottom: 10px;
-        }
-        
-        .payment-name {
-            font-weight: 700;
-            color: #5D4037;
-            margin-bottom: 5px;
-        }
-        
-        .payment-desc {
-            font-size: 12px;
-            color: #8B4513;
-        }
-        
-        /* Drivers Page */
-        .drivers-section {
-            padding: 20px;
-        }
-        
-        .stats-card {
-            background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);
-            color: white;
-            border-radius: 16px;
-            padding: 20px;
-            margin-bottom: 25px;
-            box-shadow: 0 8px 16px rgba(139, 69, 19, 0.2);
-        }
-        
-        .stats-title {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 15px;
-            opacity: 0.9;
-        }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-        }
-        
-        .stat-item {
-            text-align: center;
-            padding: 15px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-        }
-        
-        .stat-value {
-            font-size: 28px;
-            font-weight: 800;
-            margin-bottom: 5px;
-        }
-        
-        .stat-label {
-            font-size: 13px;
-            opacity: 0.9;
-        }
-        
-        .trips-list {
-            background: linear-gradient(to right, #f9f5f0, #f5efe8);
-            border-radius: 12px;
-            padding: 0;
-            overflow: hidden;
-        }
-        
-        .trip-header {
-            display: flex;
-            justify-content: space-between;
-            padding: 15px 20px;
-            background: #8B4513;
-            color: white;
-            font-weight: 600;
-        }
-        
-        .trip-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 15px 20px;
-            border-bottom: 1px solid #e0d4c8;
-        }
-        
-        .trip-item:last-child {
-            border-bottom: none;
-        }
-        
-        .trip-time {
-            color: #8B4513;
-            font-weight: 600;
-        }
-        
-        .trip-earnings {
-            color: #5D4037;
-            font-weight: 600;
-        }
-        
-        /* KYC Verification Page */
-        .kyc-section {
-            padding: 20px;
-        }
-        
-        .kyc-status {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: linear-gradient(to right, #f9f5f0, #f5efe8);
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 25px;
-            border-left: 4px solid #8B4513;
-        }
-        
-        .kyc-text h3 {
-            color: #5D4037;
-            margin-bottom: 5px;
-        }
-        
-        .kyc-text p {
-            color: #8B4513;
-            font-size: 14px;
-        }
-        
-        .kyc-badge {
-            background: linear-gradient(135deg, #8B4513, #A0522D);
-            color: white;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-weight: 600;
-            font-size: 14px;
-        }
-        
-        .upload-section {
-            margin-bottom: 25px;
-        }
-        
-        .upload-card {
-            background: white;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 15px;
-            border: 2px dashed #D7CCC8;
-            text-align: center;
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-        
-        .upload-card:hover {
-            border-color: #8B4513;
-            background: #f9f5f0;
-        }
-        
-        .upload-icon {
-            font-size: 40px;
-            color: #8B4513;
-            margin-bottom: 15px;
-        }
-        
-        .upload-title {
-            font-weight: 700;
-            color: #5D4037;
-            margin-bottom: 10px;
-        }
-        
-        .upload-desc {
-            color: #8B4513;
-            font-size: 13px;
-            margin-bottom: 15px;
-        }
-        
-        .upload-btn {
-            background: linear-gradient(to right, #8B4513, #A0522D);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .upload-btn:hover {
-            background: linear-gradient(to right, #A0522D, #C19A6B);
-        }
-        
-        /* Footer */
-        .app-footer {
-            padding: 20px;
-            text-align: center;
-            color: #8B4513;
-            font-size: 13px;
-            border-top: 1px solid #eae0d5;
-            background: linear-gradient(to right, #f8f1eb, #f5ebe0);
-            width: 100%;
-        }
-        
-        /* Responsive adjustments */
-        @media (max-width: 100px) {
-            body {
-                padding: 3px;
-            }
-            
-            .app-container {
-                border-radius: 20px;
-            }
-            
-            .nav-tab {
-                font-size: 13px;
-                padding: 14px 5px;
-            }
-        }
-/* Floating Bottom Navigation */
-.bottom-nav {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%;
-    max-width: 380px;
-    background: rgba(139, 69, 19, 0.95);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border-radius: 30px;
-    padding: 12px 15px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    box-shadow: 0 10px 35px rgba(139, 69, 19, 0.25), 
-                0 5px 15px rgba(0, 0, 0, 0.2),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
-    z-index: 1000;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.nav-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    color: rgba(255, 255, 255, 0.7);
-    padding: 8px 12px;
-    border-radius: 20px;
-    transition: all 0.3s ease;
-    min-width: 50px;
-    position: relative;
-}
-
-.nav-item i {
-    font-size: 20px;
-    margin-bottom: 4px;
-    transition: all 0.3s ease;
-}
-
-.nav-item span {
-    font-size: 10px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-}
-
-.nav-item.active {
-    background: rgba(255, 255, 255, 0.15);
-    color: white;
-    transform: translateY(-5px);
-}
-
-.nav-item.active i {
-    color: #FFD700;
-    transform: scale(1.1);
-}
-
-.nav-item:not(.active):hover {
-    color: rgba(255, 255, 255, 0.9);
-    background: rgba(255, 255, 255, 0.05);
-}
-
-.nav-item.active::before {
-    content: '';
-    position: absolute;
-    top: -5px;
-    width: 5px;
-    height: 5px;
-    background: #FFD700;
-    border-radius: 50%;
-}
-
-.nav-badge {
-    position: absolute;
-    top: 0;
-    right: 0;
-    background: #e74c3c;
-    color: white;
-    font-size: 10px;
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    border: 2px solid rgba(139, 69, 19, 0.95);
-}
-
-/* Adjust main content to not hide behind nav */
-.main-content {
-    padding-bottom: 100px !important;
-}
-/* Floating Bottom Navigation */
-#bottom-navigation {
-    position: fixed;
-    bottom: 15px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 95%;
-    max-width: 420px;
-    z-index: 1000;
-}
-
-.bottom-nav {
-    display: flex;
-    justify-content: space-around;
-    background: #ffffff;
-    padding: 12px 8px;
-    border-radius: 25px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-}
-
-.bottom-nav .nav-item {
-    text-decoration: none;
-    color: #777;
-    font-size: 12px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.bottom-nav .nav-item i {
-    font-size: 18px;
-    margin-bottom: 4px;
-}
-
-.bottom-nav .nav-item.active {
-    color: #8B4513;
-}
-.login-container {
-    position: fixed;
-    inset: 0;
-    background: #f9f5f0;
-    z-index: 2000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1014,13 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>City Plus - Your Urban Connection</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
- 
+      <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body>
-    <link rel="stylesheet" href="style.css">
-
     <div class="app-container">
-                <div id="login-panel" class="login-container">
+        <!-- App Header with Logo -->
+        <div class="app-header">
+            <div class="logo-container">
+                <div class="logo">
+                    <div class="logo-">
+                        <span class="logo-plus"></span>
+                    </div>
+                    <span class="logo-"></span>
+                </div>
+            </div>
+            <h1 class="login-title">Cityplus</h1>
+            <p class="login-subtitle">CITY SHUTTLE - Your Urban Connection</p>
+        </div>
+        
+        <!-- LOGIN PANEL (Shows First) -->
+        <div id="login-panel" class="login-container">
             <div class="login-form">
                 <div class="login-option" id="google-login">
                     <div class="login-icon google">
@@ -1119,451 +124,436 @@
                 </div>
             </div>
         </div>
-        <!-- App Header with Logo -->
-        <div class="app-header">
-            <div class="logo-container">
-                <div class="logo">
-                    <div class="logo-c">
-                        <span class="logo-plus"></span>
-                    </div>
-                    <span class="logo-y">y</span>
+        
+        <!-- MAIN APP CONTENT (Hidden initially, shown after login) -->
+         
+    
+
+        
+        <div id="main-app" class="main-content" style="display: none;">
+             
+        
+    <!-- NAV + CONTENT WRAPPER -->
+
+<!-- Navigation -->
+<nav>
+    <button onclick="showPart('qr')">QR code</button>
+    <button onclick="showPart('location')">Locations</button>
+    <button onclick="showPart('payment')">Payment</button>
+    <button onclick="showPart('kyc')">KYC</button>
+</nav>
+
+<!-- Single Container -->
+
+    <!-- QR Code Section -->
+    <div id="qr" class="section">
+        <div class="welcome-section">
+            <div class="welcome-text">Your Boarding Pass</div>
+            <div class="user-name">Ticket ID: XZY-123-ABC</div>
+        </div>
+        
+        <div class="qr-section">
+            <div class="qr-container">
+                <div id="qr-code" class="qr-code"></div>
+                <p>Present this screen to the driver/attendant for scanning</p>
+            </div>
+            
+            <div class="valid-until" style="margin-top: 20px;">
+                <div class="valid-text">Valid for:</div>
+                <div class="valid-time">07:58 AM - 8.30 AM</div>
+            </div>
+            
+            <div class="trip-info">
+                <div class="trip-count">
+                    <div class="count-number">Ian Kimathi</div>
+                    <div class="count-label">Passenger Name</div>
                 </div>
             </div>
-            <h1 class="app-title">Cityplus</h1>
-            <p class="app-subtitle">CITY SHUTTLE - Your Urban Connection</p>
+            
+            <div style="margin-top: 20px; padding: 15px; background: #f0f4f8; border-radius: 8px; text-align: center;">
+                <p style="font-size: 13px; color: #2C3E50; margin: 5px 0;">
+                    <i class="fas fa-clock"></i> Expires in: <span id="qr-countdown" style="font-weight: bold; color: #FF9800;">2:00:00</span>
+                </p>
+                <button id="refresh-qr" style="margin-top: 10px; padding: 8px 16px; background: linear-gradient(to right, #3b82f6, #2563eb); color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 12px; width: 100%;">
+                    <i class="fas fa-sync-alt"></i> Refresh QR Code
+                </button>
+            </div>
+            
+            <p style="text-align: center; color: #4CAF50; font-size: 14px; margin-top: 20px; padding: 0 10px;">
+                <i class="fas fa-info-circle"></i> This QR code expires after 2 hours. Refresh for a new code.
+            </p>
         </div>
-        <!-- Navigation Tabs -->
-      <!-- Floating Bottom Navigation (Initially hidden, shown after login) -->
-<div id="bottom-navigation" style="display: none;">
-    <nav class="bottom-nav">
-        <a href="#" class="nav-item active" data-tab="home">
-            <i class="fas fa-home"></i>
-            <span>Home</span>
-        </a>
-        <a href="#" class="nav-item" data-tab="qrcode">
-            <i class="fas fa-qrcode"></i>
-            <span>QR Code</span>
-        </a>
-        <a href="#" class="nav-item" data-tab="drivers">
-            <i class="fas fa-car"></i>
-            <span>Drivers</span>
-        </a>
-        <a href="#" class="nav-item" data-tab="payment">
-            <i class="fas fa-credit-card"></i>
-            <span>Payment</span>
-        </a>
-        <a href="#" class="nav-item" data-tab="kyc">
-            <i class="fas fa-id-card"></i>
-            <span>KYC</span>
-            <span class="nav-badge">1</span>
-        </a>
-        <a href="#" class="nav-item" data-tab="profile">
-            <i class="fas fa-user"></i>
-            <span>Profile</span>
-        </a>
-    </nav>
+    
+
+    <!-- Location Section -->
+    <div id="location" class="section" style="display:none;">
+        <h2>Location Page</h2>
+        <p>This is the location section content.</p>
+    </div>
+
+    <!-- Payment Section -->
+    <div id="payment" class="section" style="display:none;">
+        <h2>Payment Section</h2>
+        <p>This is the Payment section content.</p>
+        <!-- Add your payment content here -->
+    </div>
+
+    <!-- KYC Section -->
+    <div id="kyc" class="section" style="display:none;">
+        <h2>KYC Section</h2>
+        <p>This is the KYC section content.</p>
+        <!-- Add your KYC content here -->
+    </div>
 </div>
-        
-        <!-- Home Tab -->
-        <div id="home" class="tab-content active">
-            <div class="welcome-section">
-                <div class="welcome-text">Welcome back,</div>
-                <div class="user-name">Ian kimathi</div>
+
+
+            <!-- Home Tab -->
+            <div id="home" class="tab-content active">
+                <div class="welcome-section">
+                     <div class="welcome-text">Welcome back,</div>
+                    <div class="user-name">kimathi ian</div>
+                </div>
+                
+                <div class="subscription-card">
+                    <div class="plan-name">
+                        Monthly Pass
+                        <span><i class="fas fa-crown"></i></span>
+                    </div>
+                    <div class="plan-price">ksh 4,000</div>
+                    <div class="plan-details">
+                        Unlimited shuttle rides for 30 days. Generate a daily QR code valid for up to 2 trips per day. Access to premium shuttles and priority boarding.
+                    </div>
+                    <button class="subscribe-btn">
+                        <i class="fas fa-sync-alt"></i> Renew Subscription
+                    </button>
+                </div>
+                
+                <div class="qr-section">
+                    <div class="section-title">Today's QR Code</div>
+                    <div class="qr-container">
+                        <div id="qr-code-2" class="qr-code"></div>
+                        <p>Scan this code at the shuttle</p>
+                    </div>
+                    
+                    <div class="trip-info">
+                        <div class="trip-count">
+                            <div class="count-number">2</div>
+                            <div class="count-label">Daily Trips</div>
+                        </div>
+                        <div class="trip-count">
+                            <div class="count-number">1</div>
+                            <div class="count-label">Used Today</div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 15px; padding: 10px; background: #f0f4f8; border-radius: 8px; text-align: center;">
+                        <p style="font-size: 13px; color: #2C3E50; margin: 5px 0;">
+                            <i class="fas fa-clock"></i> Expires in: <span id="qr-countdown-2" style="font-weight: bold; color: #FF9800;">2:00:00</span>
+                        </p>
+                    </div>
+                    
+                    <div class="valid-until">
+                        <div class="valid-text">Valid until</div>
+                        <div class="valid-time">11:59 PM Today</div>
+                    </div>
+                </div>
             </div>
             
-            <div class="subscription-card">
-                <div class="plan-name">
-                    Monthly Pass
-                    <span><i class="fas fa-crown"></i></span>
+            <!-- QR Code Tab -->
+            <div id="qrcode" class="tab-content">
+                <div class="welcome-section">
+                    <div class="welcome-text">Your Boarding Pass</div>
+                    <div class="user-name">Ticket ID: XZY-123-ABC</div>
                 </div>
-                <div class="plan-price">ksh4,000</div>
-                <div class="plan-details">
-                    Unlimited shuttle rides for 30 days. Generate a daily QR code valid for up to 2 trips per day. Access to premium shuttles and priority boarding.
+                
+                <div class="qr-section">
+                    <div class="qr-container">
+                        <div class="qr-code"></div>
+                        <p>Present this screen to the driver/attendant for scanning</p>
+                    </div>
+                    
+                    <div class="valid-until" style="margin-top: 20px;">
+                        <div class="valid-text">Valid for:</div>
+                        <div class="valid-time">07:58 AM - 8.30 AM</div>
+                    </div>
+                    
+                    <div class="trip-info">
+                        <div class="trip-count">
+                            <div class="count-number"> Ian Kimathi</div>
+                            <div class="count-label">Passenger Name</div>
+                        </div>
+                    </div>
+                    
+                    <p style="text-align: center; color: #4CAF50; font-size: 14px; margin-top: 20px; padding: 0 10px;">
+                        <i class="fas fa-info-circle"></i> This QR code resets daily at midnight. Maximum 2 trips per day.
+                    </p>
                 </div>
-                <button class="subscribe-btn">
-                    <i class="fas fa-sync-alt"></i> Renew Subscription
-                </button>
             </div>
             
-            <div class="qr-section">
-                <div class="section-title">Today's QR Code</div>
-                <div class="qr-container">
-                    <div class="qr-code"></div>
-                    <p>Scan this code at the shuttle</p>
-                </div>
-                
-                <div class="trip-info">
-                    <div class="trip-count">
-                        <div class="count-number">2</div>
-                        <div class="count-label">Daily Trips</div>
+            <!-- Drivers Tab -->
+            <div id="Drivers" class="tab-content">
+                <div class="Drivers-section">
+                    <div class="stats-card">
+                        <div class="stats-title">Today's Driver Stats</div>
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <div class="stat-value">12</div>
+                                <div class="stat-label">Total Trips</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">8</div>
+                                <div class="stat-label">Completed</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">3</div>
+                                <div class="stat-label">In Progress</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">$420</div>
+                                <div class="stat-label">Earnings</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="trip-count">
-                        <div class="count-number">1</div>
-                        <div class="count-label">Used Today</div>
+                    
+                    <div class="section-title">Recent Trips</div>
+                    <div class="trips-list">
+                        <div class="trip-header">
+                            <div>Trip Time</div>
+                            <div>Earnings</div>
+                        </div>
+                        
+                        <div class="trip-item">
+                            <div class="trip-time">08:30 AM</div>
+                            <div class="trip-earnings">Ksh 1500</div>
+                        </div>
+                        
+                        <div class="trip-item">
+                            <div class="trip-time">09:15 AM</div>
+                            <div class="trip-earnings">Ksh 1200</div>
+                        </div>
+                        
+                        <div class="trip-item">
+                            <div class="trip-time">10:45 AM</div>
+                            <div class="trip-earnings">Ksh 2000</div>
+                        </div>
+                        
+                        <div class="trip-item">
+                            <div class="trip-time">12:30 PM</div>
+                            <div class="trip-earnings">Ksh 1400</div>
+                        </div>
+                        
+                        <div class="trip-item">
+                            <div class="trip-time">02:15 PM</div>
+                            <div class="trip-earnings">Ksh 1800</div>
+                        </div>
                     </div>
+                    
+                    <button class="action-btn" style="margin-top: 20px;">
+                        <i class="fas fa-file-alt"></i> View Detailed Report
+                    </button>
                 </div>
-                
-                <div class="valid-until">
-                    <div class="valid-text">Valid until</div>
-                    <div class="valid-time">11:59 PM Today</div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- QR Code Tab -->
-        <div id="qrcode" class="tab-content">
-            <div class="welcome-section">
-                <div class="welcome-text">Your Boarding Pass</div>
-                <div class="user-name">Ticket ID: XZY-123-ABC</div>
             </div>
             
-            <div class="qr-section">
-                <div class="qr-container">
-                    <div class="qr-code"></div>
-                    <p>Present this screen to the driver/attendant for scanning</p>
-                </div>
-                
-                <div class="valid-until" style="margin-top: 20px;">
-                    <div class="valid-text">Valid for:</div>
-                    <div class="valid-time">07:58 AM - 11:59 PM</div>
-                </div>
-                
-                <div class="trip-info">
-                    <div class="trip-count">
-                        <div class="count-number">Ian kimathi</div>
-                        <div class="count-label">Passenger Name</div>
+            <!-- Payment Methods Tab -->
+            <div id="payment" class="tab-content">
+                <div class="payment-section">
+                    <div class="notice-card">
+                        <div class="notice-title">
+                            <i class="fas fa-exclamation-circle"></i>
+                            Before you proceed
+                        </div>
+                        <p style="color: #2C3E50;">Select your preferred payment method to complete your subscription or trip payment.</p>
                     </div>
+                    
+                    <div class="section-title">Payment Methods</div>
+                    
+                    <div class="payment-options">
+                        <div class="payment-option active" data-payment="mpesa">
+                            <div class="payment-icon">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <div class="payment-name">M-Pesa</div>
+                            <div class="payment-desc">Mobile Money</div>
+                        </div>
+                        
+                        <div class="payment-option" data-payment="card">
+                            <div class="payment-icon">
+                                <i class="far fa-credit-card"></i>
+                            </div>
+                            <div class="payment-name">Card</div>
+                            <div class="payment-desc">Credit/Debit Card</div>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-options">
+                        <div class="payment-option" data-payment="applepay">
+                            <div class="payment-icon">
+                                <i class="fab fa-apple"></i>
+                            </div>
+                            <div class="payment-name">Apple Pay</div>
+                            <div class="payment-desc">Apple Wallet</div>
+                        </div>
+                        
+                        <div class="payment-option" data-payment="mobilepay">
+                            <div class="payment-icon">
+                                <i class="fas fa-wallet"></i>
+                            </div>
+                            <div class="payment-name">Mobile Pay</div>
+                            <div class="payment-desc">Digital Wallet</div>
+                        </div>
+                    </div>
+                    
+                    <div class="info-card" style="margin-top: 20px;">
+                        <div class="info-title">Selected Payment Method</div>
+                        <div class="info-value">M-Pesa •••• 2547</div>
+                    </div>
+                    
+                    <button class="action-btn" style="margin-top: 20px;">
+                        <i class="fas fa-lock"></i> Secure Payment
+                    </button>
                 </div>
-                
-                <p style="text-align: center; color: #8B4513; font-size: 14px; margin-top: 20px; padding: 0 10px;">
-                    <i class="fas fa-info-circle"></i> This QR code resets daily at midnight. Maximum 2 trips per day.
-                </p>
             </div>
-        </div>
-        
-        <!-- Drivers Tab -->
-        <div id="drivers" class="tab-content">
-            <div class="drivers-section">
-                <div class="stats-card">
-                    <div class="stats-title">Today's Driver Stats</div>
-                    <div class="stats-grid">
-                        <div class="stat-item">
-                            <div class="stat-value">12</div>
-                            <div class="stat-label">Total Trips</div>
+            
+            <!-- KYC Verification Tab -->
+            <div id="kyc" class="tab-content">
+                <div class="kyc-section">
+                    <div class="kyc-status">
+                        <div class="kyc-text">
+                            <h3>KYC Verification</h3>
+                            <p>Secure your account to unlock full features</p>
                         </div>
-                        <div class="stat-item">
-                            <div class="stat-value">8</div>
-                            <div class="stat-label">Completed</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-value">3</div>
-                            <div class="stat-label">In Progress</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-value">$420</div>
-                            <div class="stat-label">Earnings</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="section-title">Recent Trips</div>
-                <div class="trips-list">
-                    <div class="trip-header">
-                        <div>Trip Time</div>
-                        <div>Earnings</div>
+                        <div class="kyc-badge">Pending</div>
                     </div>
                     
-                    <div class="trip-item">
-                        <div class="trip-time">08:30 AM</div>
-                        <div class="trip-earnings">$35.50</div>
-                    </div>
+                    <div class="section-title">Identity Document</div>
                     
-                    <div class="trip-item">
-                        <div class="trip-time">09:15 AM</div>
-                        <div class="trip-earnings">$28.00</div>
-                    </div>
-                    
-                    <div class="trip-item">
-                        <div class="trip-time">10:45 AM</div>
-                        <div class="trip-earnings">$42.75</div>
-                    </div>
-                    
-                    <div class="trip-item">
-                        <div class="trip-time">12:30 PM</div>
-                        <div class="trip-earnings">$31.25</div>
-                    </div>
-                    
-                    <div class="trip-item">
-                        <div class="trip-time">02:15 PM</div>
-                        <div class="trip-earnings">$38.50</div>
-                    </div>
-                </div>
-                
-                <button class="action-btn" style="margin-top: 20px;">
-                    <i class="fas fa-file-alt"></i> View Detailed Report
-                </button>
-            </div>
-        </div>
-        
-        <!-- Payment Methods Tab -->
-        <div id="payment" class="tab-content">
-            <div class="payment-section">
-                <div class="notice-card">
-                    <div class="notice-title">
-                        <i class="fas fa-exclamation-circle"></i>
-                        Before you proceed
-                    </div>
-                    <p style="color: #5D4037;">Select your preferred payment method to complete your subscription or trip payment.</p>
-                </div>
-                
-                <div class="section-title">Payment Methods</div>
-                
-                <div class="payment-options">
-                    <div class="payment-option active" data-payment="mpesa">
-                        <div class="payment-icon">
-                            <i class="fas fa-mobile-alt"></i>
+                    <div class="upload-section">
+                        <div class="upload-card">
+                            <div class="upload-icon">
+                                <i class="fas fa-id-card"></i>
+                            </div>
+                            <div class="upload-title">Upload Front ID</div>
+                            <div class="upload-desc">Government issued ID (Front side)</div>
+                            <button class="upload-btn">Upload File</button>
                         </div>
-                        <div class="payment-name">M-Pesa</div>
-                        <div class="payment-desc">Mobile Money</div>
+                        
+                        <div class="upload-card">
+                            <div class="upload-icon">
+                                <i class="fas fa-id-card"></i>
+                            </div>
+                            <div class="upload-title">Upload Back ID</div>
+                            <div class="upload-desc">Government issued ID (Back side)</div>
+                            <button class="upload-btn">Upload File</button>
+                        </div>
                     </div>
                     
-                    <div class="payment-option" data-payment="card">
-                        <div class="payment-icon">
-                            <i class="far fa-credit-card"></i>
-                        </div>
-                        <div class="payment-name">Card</div>
-                        <div class="payment-desc">Credit/Debit Card</div>
-                    </div>
-                </div>
-                
-                <div class="payment-options">
-                    <div class="payment-option" data-payment="applepay">
-                        <div class="payment-icon">
-                            <i class="fab fa-apple"></i>
-                        </div>
-                        <div class="payment-name">Apple Pay</div>
-                        <div class="payment-desc">Apple Wallet</div>
-                    </div>
+                    <div class="section-title">Live Selfie</div>
                     
-                    <div class="payment-option" data-payment="mobilepay">
-                        <div class="payment-icon">
-                            <i class="fas fa-wallet"></i>
-                        </div>
-                        <div class="payment-name">Mobile Pay</div>
-                        <div class="payment-desc">Digital Wallet</div>
-                    </div>
-                </div>
-                
-                <div class="info-card" style="margin-top: 20px;">
-                    <div class="info-title">Selected Payment Method</div>
-                    <div class="info-value">M-Pesa •••• 2547</div>
-                </div>
-                
-                <button class="action-btn" style="margin-top: 20px;">
-                    <i class="fas fa-lock"></i> Secure Payment
-                </button>
-            </div>
-        </div>
-        
-        <!-- KYC Verification Tab -->
-        <div id="kyc" class="tab-content">
-            <div class="kyc-section">
-                <div class="kyc-status">
-                    <div class="kyc-text">
-                        <h3>KYC Verification</h3>
-                        <p>Secure your account to unlock full features</p>
-                    </div>
-                    <div class="kyc-badge">Pending</div>
-                </div>
-                
-                <div class="section-title">Identity Document</div>
-                
-                <div class="upload-section">
                     <div class="upload-card">
                         <div class="upload-icon">
-                            <i class="fas fa-id-card"></i>
+                            <i class="fas fa-camera"></i>
                         </div>
-                        <div class="upload-title">Upload Front ID</div>
-                        <div class="upload-desc">Government issued ID (Front side)</div>
-                        <button class="upload-btn">Upload File</button>
+                        <div class="upload-title">Take a live photo for verification</div>
+                        <div class="upload-desc">Ensure good lighting and face the camera directly</div>
+                        <button class="upload-btn">Take Photo</button>
                     </div>
                     
-                    <div class="upload-card">
-                        <div class="upload-icon">
-                            <i class="fas fa-id-card"></i>
+                    <button class="action-btn" style="margin-top: 20px;">
+                        <i class="fas fa-paper-plane"></i> Submit for Verification
+                    </button>
+                    
+                    <p style="text-align: center; color: #4CAF50; font-size: 13px; margin-top: 15px;">
+                        <i class="fas fa-clock"></i> Verification usually takes 1 to 3 minutes
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Profile Tab -->
+            <div id="profile" class="tab-content">
+                <div class="profile-section">
+                    <div class="profile-info">
+                        <div class="profile-avatar">JD</div>
+                        <div class="profile-details">
+                            <h3>John S. Doe</h3>
+                            <p>kimathi@gmail.com</p>
+                            <p>Premium Member since Jan 2023</p>
                         </div>
-                        <div class="upload-title">Upload Back ID</div>
-                        <div class="upload-desc">Government issued ID (Back side)</div>
-                        <button class="upload-btn">Upload File</button>
                     </div>
-                </div>
-                
-                <div class="section-title">Live Selfie</div>
-                
-                <div class="upload-card">
-                    <div class="upload-icon">
-                        <i class="fas fa-camera"></i>
+                    
+                    <div class="info-card">
+                        <div class="info-title">Current Subscription</div>
+                        <div class="info-value">Monthly Pass - $4,000</div>
                     </div>
-                    <div class="upload-title">Take a live photo for verification</div>
-                    <div class="upload-desc">Ensure good lighting and face the camera directly</div>
-                    <button class="upload-btn">Take Photo</button>
+                    
+                    <div class="info-card">
+                        <div class="info-title">Next Billing Date</div>
+                        <div class="info-value">15/12/2023</div>
+                    </div>
+                    
+                    <div class="info-card">
+                        <div class="info-title">Daily Trips Remaining</div>
+                        <div class="info-value">1 out of 2 trips</div>
+                    </div>
+                    
+                    <div class="info-card">
+                        <div class="info-title">KYC Status</div>
+                        <div class="info-value">Pending Verification</div>
+                    </div>
+                    
+                    <button class="action-btn">
+                        <i class="fas fa-cog"></i> Account Settings
+                    </button>
+                    
+                    <button class="action-btn" style="background: linear-gradient(to right, #FFF8F0, #FAF0E6); color: #4CAF50; border: 2px solid #4CAF50;">
+                        <i class="fas fa-question-circle"></i> Help & Support
+                    </button>
                 </div>
-                
-                <button class="action-btn" style="margin-top: 20px;">
-                    <i class="fas fa-paper-plane"></i> Submit for Verification
-                </button>
-                
-                <p style="text-align: center; color: #8B4513; font-size: 13px; margin-top: 15px;">
-                    <i class="fas fa-clock"></i> Verification usually takes 24-48 hours
-                </p>
+            </div>
+            
+            <!-- App Footer -->
+            <div class="app-footer">
+                <p>CITY SHUTTLE &copy; 2023 | Your Urban Connection</p>
+                <p style="margin-top: 5px; font-size: 12px;">City Plus v2.1.4</p>
             </div>
         </div>
         
-        <!-- Profile Tab -->
-        <div id="profile" class="tab-content">
-            <div class="profile-section">
-                <div class="profile-info">
-                    <div class="profile-avatar">JD</div>
-                    <div class="profile-details">
-                        <h3>John S. Doe</h3>
-                        <p>john.doe@email.com</p>
-                        <p>Premium Member since Jan 2023</p>
-                    </div>
-                </div>
-                
-                <div class="info-card">
-                    <div class="info-title">Current Subscription</div>
-                    <div class="info-value">Monthly Pass - $4,000</div>
-                </div>
-                
-                <div class="info-card">
-                    <div class="info-title">Next Billing Date</div>
-                    <div class="info-value">15/12/2023</div>
-                </div>
-                
-                <div class="info-card">
-                    <div class="info-title">Daily Trips Remaining</div>
-                    <div class="info-value">1 out of 2 trips</div>
-                </div>
-                
-                <div class="info-card">
-                    <div class="info-title">KYC Status</div>
-                    <div class="info-value">Pending Verification</div>
-                </div>
-                
-                <button class="action-btn">
-                    <i class="fas fa-cog"></i> Account Settings
-                </button>
-                
-                <button class="action-btn" style="background: linear-gradient(to right, #f9f5f0, #f5efe8); color: #8B4513; border: 2px solid #8B4513;">
-                    <i class="fas fa-question-circle"></i> Help & Support
-                </button>
-            </div>
-        </div>
-        
-        <!-- App Footer -->
-        <div class="app-footer">
-            <p>CITY SHUTTLE &copy; 2023 | Your Urban Connection</p>
-            <p style="margin-top: 5px; font-size: 12px;">City Plus v2.1.4</p>
+        <!-- Floating Bottom Navigation (Initially hidden, shown after login) -->
+        <div id="bottom-navigation" style="display: none;">
+            <nav class="bottom-nav">
+                <a href="#" class="nav-item active" data-tab="home">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="#" class="nav-item" data-tab="qrcode">
+                    <i class="fas fa-qrcode"></i>
+                    <span>QR Code</span>
+                </a>
+                <a href="#" class="nav-item" data-tab="drivers">
+                    <i class="fas fa-car"></i>
+                    <span>Drivers</span>
+                </a>
+                <a href="#" class="nav-item" data-tab="payment">
+                    <i class="fas fa-credit-card"></i>
+                    <span>Payment</span>
+                </a>
+                <a href="#" class="nav-item" data-tab="kyc">
+                    <i class="fas fa-id-card"></i>
+                    <span>KYC</span>
+                    <span class="nav-badge">1</span>
+                </a>
+                <a href="#" class="nav-item" data-tab="profile">
+                    <i class="fas fa-user"></i>
+                    <span>Profile</span>
+                </a>
+            </nav>
         </div>
     </div>
 
     <script>
-        // Tab switching functionality
-        document.querySelectorAll('.nav-tab').forEach(tab => {
-            tab.addEventListener('click', function() {
-                // Remove active class from all tabs and contents
-                document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-                
-                // Add active class to clicked tab
-                this.classList.add('active');
-                
-                // Show corresponding content
-                const tabId = this.getAttribute('data-tab');
-                document.getElementById(tabId).classList.add('active');
-            });
-        });
-        
-        // Payment method selection
-        document.querySelectorAll('.payment-option').forEach(option => {
-            option.addEventListener('click', function() {
-                // Remove active class from all payment options
-                document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('active'));
-                
-                // Add active class to clicked option
-                this.classList.add('active');
-                
-                // Update selected payment method display
-                const paymentName = this.querySelector('.payment-name').textContent;
-                document.querySelector('.info-value').textContent = `${paymentName} •••• 2547`;
-            });
-        });
-        
-        // Simulate QR code update
-        function updateQRCode() {
-            const now = new Date();
-            const timeString = now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-            document.querySelector('.valid-time').textContent = timeString;
-            
-            // Update trip count randomly for demo
-            const usedTrips = Math.floor(Math.random() * 3);
-            document.querySelector('.count-number:nth-child(2)').textContent = usedTrips;
-            
-            // Show message if all trips used
-            if (usedTrips >= 2) {
-                document.querySelector('.qr-section p').innerHTML = '<i class="fas fa-exclamation-circle"></i> Daily trip limit reached. New QR code available tomorrow.';
-                document.querySelector('.qr-section p').style.color = '#e74c3c';
-            }
-        }
-        
-        // Update driver stats
-        function updateDriverStats() {
-            const trips = Math.floor(Math.random() * 5) + 10;
-            const completed = Math.floor(trips * 0.7);
-            const inProgress = trips - completed;
-            const earnings = Math.floor(trips * 35);
-            
-            document.querySelector('.stat-value:nth-child(1)').textContent = trips;
-            document.querySelector('.stat-value:nth-child(2)').textContent = completed;
-            document.querySelector('.stat-value:nth-child(3)').textContent = inProgress;
-            document.querySelector('.stat-value:nth-child(4)').textContent = `$${earnings}`;
-        }
-        
-        // Update time every minute
-        setInterval(updateQRCode, 60000);
-        setInterval(updateDriverStats, 30000);
-        
-        // Initial updates
-        updateQRCode();
-        updateDriverStats();
-        
-        // Subscription button interaction
-        document.querySelector('.subscribe-btn').addEventListener('click', function() {
-            alert('Redirecting to payment gateway for Monthly Pass renewal...');
-            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
-            this.disabled = true;
-            
-            // Simulate payment process
-            setTimeout(() => {
-                this.innerHTML = '<i class="fas fa-check"></i> Subscription Renewed!';
-                this.style.background = 'linear-gradient(to right, #2ecc71, #27ae60)';
-                this.style.color = 'white';
-                
-                // Reset button after 3 seconds
-                setTimeout(() => {
-                    this.innerHTML = '<i class="fas fa-sync-alt"></i> Renew Subscription';
-                    this.style.background = '';
-                    this.style.color = '';
-                    this.disabled = false;
-                }, 3000);
-            }, 2000);
-        });
+        //sections display function
+ 
 
-        
-    // SIMULATED LOGIN (Email login)
-
-// Login functionality
+        // Login functionality
         const loginPanel = document.getElementById('login-panel');
         const mainApp = document.getElementById('main-app');
         const emailForm = document.getElementById('email-form');
@@ -1721,7 +711,407 @@
             });
         });
         
+        
+// Function to show selected section
+function showPart(partId) {
+    // Hide all sections in the container
+    const allSections = document.querySelectorAll('.container .section');
+    allSections.forEach(section => {
+        section.style.display = 'none';
+    });
+    
+    // Show the selected section
+    const selectedSection = document.getElementById(partId);
+    if (selectedSection) {
+        selectedSection.style.display = 'block';
+    }
+    
+    // Update active button styling
+    updateActiveButton(partId);
+}
 
+// Function to update active button
+function updateActiveButton(activeId) {
+    const buttons = document.querySelectorAll('nav button');
+    buttons.forEach(button => {
+        button.classList.remove('active');
+    });
+    
+    const activeButton = document.querySelector(`button[onclick="showPart('${activeId}')"]`);
+    if (activeButton) {
+        activeButton.classList.add('active');
+    }
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', function() {
+    // Show QR section by default
+    showPart('qr');
+});
+
+
+    
+
+ document.querySelector('.').addEventListener('click', function() {
+            alert('Redirecting to payment gateway for Monthly Pass renewal...');
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+            this.disabled = true;
+            
+            // Simulate payment process
+            setTimeout(() => {
+                this.innerHTML = '<i class="fas fa-check"></i> Subscription Renewed!';
+                this.style.background = 'linear-gradient(to right, #2ecc71, #27ae60)';
+                this.style.color = 'white';
+                
+                // Reset button after 3 seconds
+                setTimeout(() => {
+                    this.innerHTML = '<i class="fas fa-sync-alt"></i> Renew Subscription';
+                    this.style.background = '';
+                    this.style.color = '';
+                    this.disabled = false;
+                }, 3000);
+            }, 2000);
+        },1500);
+        
+
+
+
+
+
+
+        // Floating bottom navigation functionality
+        const navItems = document.querySelectorAll('.nav-item');
+
+        // Navigation item click handler
+        navItems.forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all items
+                navItems.forEach(nav => nav.classList.remove('active'));
+                
+                // Add active class to clicked item
+                this.classList.add('active');
+                
+                // Get tab ID
+                const tabId = this.getAttribute('data-tab');
+                
+                // Hide all tab contents
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+                
+                // Show corresponding tab content
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+        
+        // Payment method selection
+        document.querySelectorAll('.payment-option').forEach(option => {
+            option.addEventListener('click', function() {
+                // Remove active class from all payment options
+                document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('active'));
+                
+                // Add active class to clicked option
+                this.classList.add('active');
+                
+                // Update selected payment method display
+                const paymentName = this.querySelector('.payment-name').textContent;
+                document.querySelector('.info-value').textContent = `${paymentName} •••• 2547`;
+            });
+        });
+        
+        // QR Code Management
+        let qrCodeInstances = {};
+        let qrExpiryTimes = {};
+        let qrCountdownIntervals = {};
+        
+        // Generate QR Code
+        function generateQRCode(qrElementId, countdownElementId, countdownIntervalKey) {
+            // Clear existing QR code
+            const qrContainer = document.getElementById(qrElementId);
+            if (!qrContainer) return;
+            qrContainer.innerHTML = '';
+            
+            // Set expiry time to 2 hours from now
+            qrExpiryTimes[countdownIntervalKey] = new Date(Date.now() + 2 * 60 * 60 * 1000); // 2 hours
+            
+            // Generate unique QR code data (timestamp + random ID)
+            const timestamp = Date.now();
+            const randomId = Math.random().toString(36).substring(2, 15);
+            const qrData = `CITYPLUS-${timestamp}-${randomId}`;
+            
+            // Create QR code
+            qrCodeInstances[countdownIntervalKey] = new QRCode(qrContainer, {
+                text: qrData,
+                width: 250,
+                height: 250,
+                colorDark: '#000000',
+                colorLight: '#ffffff',
+                correctLevel: QRCode.CorrectLevel.H
+            });
+            
+            // Start countdown timer
+            startQRCountdown(countdownElementId, countdownIntervalKey);
+        }
+        
+        // Start countdown timer for QR code expiry
+        function startQRCountdown(countdownElementId, countdownIntervalKey) {
+            const countdownElement = document.getElementById(countdownElementId);
+            if (!countdownElement) return;
+            
+            // Clear existing interval
+            if (qrCountdownIntervals[countdownIntervalKey]) {
+                clearInterval(qrCountdownIntervals[countdownIntervalKey]);
+            }
+            
+            // Update countdown every second
+            qrCountdownIntervals[countdownIntervalKey] = setInterval(() => {
+                const now = new Date();
+                const timeRemaining = qrExpiryTimes[countdownIntervalKey] - now;
+                
+                if (timeRemaining <= 0) {
+                    // QR code expired
+                    clearInterval(qrCountdownIntervals[countdownIntervalKey]);
+                    countdownElement.textContent = 'EXPIRED';
+                    countdownElement.style.color = '#e74c3c';
+                    
+                    // Show refresh button if it exists
+                    const refreshBtn = document.getElementById('refresh-qr');
+                    if (refreshBtn) {
+                        refreshBtn.innerHTML = '<i class="fas fa-sync-alt"></i> QR Code Expired - Tap to Refresh';
+                        refreshBtn.style.background = 'linear-gradient(to right, #e74c3c, #c0392b)';
+                    }
+                    return;
+                }
+                
+                // Calculate remaining time
+                const hours = Math.floor(timeRemaining / (1000 * 60 * 60));
+                const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+                
+                // Format time string
+                const timeString = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                countdownElement.textContent = timeString;
+                
+                // Change color based on time remaining
+                if (timeRemaining < 5 * 60 * 1000) { // Less than 5 minutes
+                    countdownElement.style.color = '#e74c3c';
+                } else if (timeRemaining < 15 * 60 * 1000) { // Less than 15 minutes
+                    countdownElement.style.color = '#FF9800';
+                } else {
+                    countdownElement.style.color = '#27ae60';
+                }
+            }, 1000);
+        }
+        
+        // Simulate QR code update - UPDATED with QR generation
+        function updateQRCode() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+            const validTimeElements = document.querySelectorAll('.valid-time');
+            if (validTimeElements.length > 0) {
+                validTimeElements[0].textContent = timeString;
+            }
+            
+            // Update trip count randomly for demo
+            const usedTrips = Math.floor(Math.random() * 3);
+            const countNumbers = document.querySelectorAll('.count-number');
+            if (countNumbers.length > 1) {
+                countNumbers[1].textContent = usedTrips;
+            }
+            
+            // Show message if all trips used
+            if (usedTrips >= 2) {
+                const qrSections = document.querySelectorAll('.qr-section p');
+                if (qrSections.length > 0) {
+                    qrSections[0].innerHTML = '<i class="fas fa-exclamation-circle"></i> Daily trip limit reached. New QR code available tomorrow.';
+                    qrSections[0].style.color = '#e74c3c';
+                }
+            }
+        }
+        
+        // Update driver stats
+        function updateDriverStats() {
+            const trips = Math.floor(Math.random() * 5) + 10;
+            const completed = Math.floor(trips * 0.7);
+            const inProgress = trips - completed;
+            const earnings = Math.floor(trips * 35);
+            
+            document.querySelector('.stat-value:nth-child(1)').textContent = trips;
+            document.querySelector('.stat-value:nth-child(2)').textContent = completed;
+            document.querySelector('.stat-value:nth-child(3)').textContent = inProgress;
+            document.querySelector('.stat-value:nth-child(4)').textContent = `$${earnings}`;
+        }
+        
+        // Initialize QR codes when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Generate QR codes
+            if (document.getElementById('qr-code')) {
+                generateQRCode('qr-code', 'qr-countdown', 'qr-main');
+            }
+            if (document.getElementById('qr-code-2')) {
+                generateQRCode('qr-code-2', 'qr-countdown-2', 'qr-secondary');
+            }
+        });
+        
+        // Wait for DOM to be ready and generate QR codes
+        setTimeout(function() {
+            if (document.getElementById('qr-code')) {
+                generateQRCode('qr-code', 'qr-countdown', 'qr-main');
+            }
+            if (document.getElementById('qr-code-2')) {
+                generateQRCode('qr-code-2', 'qr-countdown-2', 'qr-secondary');
+            }
+        }, 500);
+        
+        // Refresh QR code button for main QR code
+        const refreshBtn = document.getElementById('refresh-qr');
+        if (refreshBtn) {
+            refreshBtn.addEventListener('click', function() {
+                const now = new Date();
+                const timeRemaining = qrExpiryTimes['qr-main'] - now;
+                
+                // Only allow refresh if expired or nearly expired
+                if (timeRemaining > 0 && timeRemaining > 30000) { // 30 seconds buffer
+                    const hoursLeft = Math.floor(timeRemaining / (1000 * 60 * 60));
+                    const minutesLeft = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+                    alert(`⏱️ QR code is still valid for ${hoursLeft}h ${minutesLeft}m. You can only refresh when it expires.`);
+                    return;
+                }
+                
+                // Refresh the QR code
+                generateQRCode('qr-code', 'qr-countdown', 'qr-main');
+                this.style.background = 'linear-gradient(to right, #3b82f6, #2563eb)';
+                this.innerHTML = '<i class="fas fa-sync-alt"></i> Refresh QR Code';
+                alert('✅ QR Code refreshed successfully!');
+            });
+        }
+        
+        // Update time every minute
+        setInterval(updateQRCode, 60000);
+        setInterval(updateDriverStats, 30000);
+        
+        // Initial updates
+        updateQRCode();
+        updateDriverStats();
+        
+        // Subscription button interaction
+        // Payment method selection in container
+        let selectedPaymentMethod = 'mpesa';
+        
+        document.querySelectorAll('.payment-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('active'));
+                this.classList.add('active');
+                
+                const paymentName = this.querySelector('.payment-name');
+                if (paymentName) {
+                    selectedPaymentMethod = paymentName.textContent.toLowerCase().includes('mpesa') ? 'mpesa' : 
+                                           paymentName.textContent.toLowerCase().includes('card') ? 'card' : 'bank';
+                }
+            });
+        });
+        
+        document.querySelector('.subscribe-btn').addEventListener('click', function() {
+            const amount = 4000;
+            processPayment(amount, this, selectedPaymentMethod);
+        });
+        
+        function processPayment(amount, btn, method) {
+            if (method === 'mpesa') {
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing M-Pesa...';
+                btn.disabled = true;
+                
+                setTimeout(() => {
+                    const phone = prompt('Enter your M-Pesa registered phone number (254...):', '+254');
+                    if (phone) {
+                        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Waiting for M-Pesa prompt...';
+                        setTimeout(() => {
+                            btn.innerHTML = '<i class="fas fa-check"></i> Subscription Renewed!';
+                            btn.style.background = 'linear-gradient(to right, #2ecc71, #27ae60)';
+                            btn.style.color = 'white';
+                            alert(`M-Pesa payment of Ksh ${amount} successful!\\nSubscription renewed.`);
+                            
+                            setTimeout(() => {
+                                btn.innerHTML = '<i class="fas fa-sync-alt"></i> Renew Subscription';
+                                btn.style.background = '';
+                                btn.style.color = '';
+                                btn.disabled = false;
+                            }, 3000);
+                        }, 2000);
+                    } else {
+                        btn.innerHTML = '<i class="fas fa-sync-alt"></i> Renew Subscription';
+                        btn.disabled = false;
+                    }
+                }, 1000);
+            } else if (method === 'card') {
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing Card...';
+                btn.disabled = true;
+                
+                const card = prompt('Enter 16-digit card number:');
+                if (card && card.length >= 16) {
+                    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+                    setTimeout(() => {
+                        btn.innerHTML = '<i class="fas fa-check"></i> Subscription Renewed!';
+                        btn.style.background = 'linear-gradient(to right, #2ecc71, #27ae60)';
+                        btn.style.color = 'white';
+                        alert(`Card payment of Ksh ${amount} successful!\\nSubscription renewed.`);
+                        
+                        setTimeout(() => {
+                            btn.innerHTML = '<i class="fas fa-sync-alt"></i> Renew Subscription';
+                            btn.style.background = '';
+                            btn.style.color = '';
+                            btn.disabled = false;
+                        }, 3000);
+                    }, 2000);
+                } else {
+                    btn.innerHTML = '<i class="fas fa-sync-alt"></i> Renew Subscription';
+                    btn.disabled = false;
+                    alert('Invalid card details');
+                }
+            } else if (method === 'bank') {
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating details...';
+                btn.disabled = true;
+                
+                setTimeout(() => {
+                    alert(`Bank Transfer Details:\n\nBank: Kenya Commercial Bank\nAccount: CityPlus Shuttles Ltd\nAccount #: 1234567890\nAmount: Ksh ${amount}\n\nTransfer and reply with reference.`);
+                    btn.innerHTML = '<i class="fas fa-check"></i> Details Sent!';
+                    btn.style.background = 'linear-gradient(to right, #2ecc71, #27ae60)';
+                    btn.style.color = 'white';
+                    
+                    setTimeout(() => {
+                        btn.innerHTML = '<i class="fas fa-sync-alt"></i> Renew Subscription';
+                        btn.style.background = '';
+                        btn.style.color = '';
+                        btn.disabled = false;
+                    }, 3000);
+                }, 1500);
+            }
+        }
+        
+        
+        // KYC upload buttons
+        document.querySelectorAll('.upload-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const card = this.closest('.upload-card');
+                const title = card.querySelector('.upload-title').textContent;
+                alert(`Simulating ${title} upload...`);
+                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Uploading...';
+                this.disabled = true;
+                
+                setTimeout(() => {
+                    this.innerHTML = '<i class="fas fa-check"></i> Uploaded';
+                    this.style.background = 'linear-gradient(to right, #2ecc71, #27ae60)';
+                    
+                    setTimeout(() => {
+                        this.innerHTML = 'Upload File';
+                        this.style.background = '';
+                        this.disabled = false;
+                    }, 2000);
+                }, 1500);
+            });
+        });
     </script>
 </body>
-</html>
+</html> 

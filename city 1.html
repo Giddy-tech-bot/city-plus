@@ -1,0 +1,852 @@
+      <div id="floating-nav" class="floating-nav" style="display: none;">
+            <button class="nav-btn active" onclick="showSection('home-content')">
+                <i class="fas fa-home"></i>
+                <span>Home</span> 
+            </button>
+            <button class="nav-btn" onclick="showSection('Routes')">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Routes</span>
+            </button>
+
+            <button class="nav-btn" onclick="showSection('buses-content')">
+                <i class="fas fa-bus"></i>
+                <span>Buses</span>
+                
+            </button>
+            
+          <button class="nav-btn" onclick="showSection('profile-content')">
+                    <i class="fas fa-user "></i>
+                    <span>Profile</span>
+                </button>
+</div>
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City Plus - Your Urban Connection</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+   
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- App Header with Logo -->
+        <div class="app-header">
+            <div class="logo-container">
+                <div class="logo">
+                    <div class="logo-c">
+                        <span class="logo-plus">+</span>
+                    </div>
+                    <span class="logo-y">C</span>
+                </div>
+            </div>
+            <h1 class="login-title">Cityplus</h1>
+            <p class="login-subtitle">CITY SHUTTLE - Your Urban Connection</p>
+        </div>
+        
+        <!-- LOGIN PANEL (Shows First) -->
+        <div id="login-panel" class="login-container">
+            <div class="login-form">
+                <div class="login-option" id="google-login">
+                    <div class="login-icon google">
+                        <i class="fab fa-google"></i>
+                    </div>
+                    <div class="login-text">
+                        <h3>Continue with Google</h3>
+                        <p>Sign in with your Google account</p>
+                    </div>
+                </div>
+                
+                <div class="login-option" id="facebook-login">
+                    <div class="login-icon facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </div>
+                    <div class="login-text">
+                        <h3>Continue with Facebook</h3>
+                        <p>Sign in with your Facebook account</p>
+                    </div>
+                </div>
+                
+                <div class="divider">
+                    <span>Or sign in with</span>
+                </div>
+                
+                <div class="login-option" id="email-login">
+                    <div class="login-icon email">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="login-text">
+                        <h3>Sign in with Email</h3>
+                        <p>Use your email address</p>
+                    </div>
+                </div>
+                
+                <div class="login-option" id="phone-login">
+                    <div class="login-icon phone">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <div class="login-text">
+                        <h3>Sign in with Phone</h3>
+                        <p>Use your mobile number</p>
+                    </div>
+                </div>
+                
+                <!-- Email Login Form (Hidden by default) -->
+                <div id="email-form" style="display: none;">
+                    <div class="input-group">
+                        <label class="input-label">Email Address</label>
+                        <input type="email" class="input-field" id="email-input" placeholder="Enter your email">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label class="input-label">Password</label>
+                        <div class="password-container">
+                            <input type="password" class="input-field" id="password-input" placeholder="Enter your password">
+                            <button class="password-toggle" id="toggle-password">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <a href="#" class="forgot-link">Forgot Password?</a>
+                    </div>
+                    
+                    <button class="login-btn" id="email-submit">Sign In</button>
+                    <button class="login-btn" id="back-to-options" style="background: linear-gradient(to right, #6c757d, #495057); margin-top: 10px;">
+                        <i class="fas fa-arrow-left"></i> Back to Options
+                    </button>
+                </div>
+                
+                <!-- Phone Login Form (Hidden by default) -->
+                <div id="phone-form" style="display: none;">
+                    <div class="input-group">
+                        <label class="input-label">Phone Number</label>
+                        <input type="tel" class="input-field" id="phone-input" placeholder="Enter your phone number">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label class="input-label">Password</label>
+                        <div class="password-container">
+                            <input type="password" class="input-field" id="phone-password" placeholder="Enter your password">
+                            <button class="password-toggle" id="toggle-phone-password">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <a href="#" class="forgot-link">Forgot Password?</a>
+                    </div>
+                    
+                    <button class="login-btn" id="phone-submit">Sign In</button>
+                    <button class="login-btn" id="back-to-options-phone" style="background: linear-gradient(to right, #6c757d, #495057); margin-top: 10px;">
+                        <i class="fas fa-arrow-left"></i> Back to Options
+                    </button>
+                </div>
+                
+                <div class="signup-link">
+                    Don't have an account? <a href="#" id="signup-link">Sign up</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- MAIN APP CONTENT (Hidden initially, shown after login) -->
+        <div id="main-app" class="main-content" style="display: none;">
+
+        <!-- MAIN APP CONTENT (Hidden initially, shown after login) -->
+        <div id="main-app" class="main-content" style="display: none;">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <div class="app-info">
+                    <h1>Cityplus</h1>
+                    <p>Your Urban Connection</p>
+                </div>
+                <div class="top-icons">
+                    <div class="top-icon" onclick="showNotifications()">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">2</span>
+                    </div>
+                    <div class="top-icon" onclick="showSettings()">
+                        <i class="fas fa-cog"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ADD THIS TOP NAV BAR HERE -->
+            <div class="top-nav">
+                <button class="top-nav-btn" onclick="showTopSection('home')">Home</button>
+                <button class="top-nav-btn" onclick="showTopSection('payment')">Payment</button>
+                <button class="top-nav-btn" onclick="showTopSection('kyc')">KYC</button>
+            </div>
+            
+            <!-- Home Content -->
+            <div id="home-content" class="content-section active">
+
+
+
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <div class="app-info">
+                    <h1>Cityplus</h1>
+                    <p>Your Urban Connection</p>
+                </div>
+                <div class="top-icons">
+                    <div class="top-icon" onclick="showNotifications()">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">2</span>
+                    </div>
+                    <div class="top-icon" onclick="showSettings()">
+                        <i class="fas fa-cog"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Home Content -->
+            <div id="home-content" class="content-section active">
+                <div class="welcome-section">
+                    <div class="welcome-text">Welcome back,</div>
+                    <div class="user-name">John Doe</div>
+                </div>
+                
+                <div class="qr-container">
+                    <div class="qr-display"></div>
+                    <p style="font-size: 16px; color: #2C3E50; margin-bottom: 5px;">
+                        Your Boarding Pass
+                    </p>
+                    <p style="font-size: 14px; color: #4CAF50;">
+                        Present QR code to the driver
+                    </p>
+                </div>
+                
+                <div class="trip-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">2</div>
+                        <div class="stat-label">Daily Trips</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">1</div>
+                        <div class="stat-label">Used Today</div>
+                    </div>
+                </div>
+                
+                <div class="valid-info">
+                    <div class="valid-text">Valid until</div>
+                    <div class="valid-time" id="valid-time">11:59 PM</div>
+                </div>
+            </div>
+            
+            <!-- Locations Content -->
+            <div id="locations-content" class="content-section">
+                <div class="welcome-section">
+                    <div class="welcome-text">Select Your</div>
+                    <div class="user-name">Destination</div>
+                </div>
+                
+                <div class="locations-grid">
+                    <div class="location-card active" data-location="afya-center">
+                        <div class="location-name">
+                            <i class="fas fa-hospital"></i> Afya Center
+                        </div>
+                        <div class="location-desc">
+                            Medical hub with multiple clinics and pharmacies
+                        </div>
+                        <button class="location-select">Select Destination</button>
+                    </div>
+                    
+                    <div class="location-card" data-location="tao">
+                        <div class="location-name">
+                            <i class="fas fa-briefcase"></i> Tao
+                        </div>
+                        <div class="location-desc">
+                            Commercial and business district
+                        </div>
+                        <button class="location-select">Select Destination</button>
+                    </div>
+                    
+                    <div class="location-card" data-location="kawangware">
+                        <div class="location-name">
+                            <i class="fas fa-home"></i> Kawangware
+                        </div>
+                        <div class="location-desc">
+                            Residential area with local markets
+                        </div>
+                        <button class="location-select">Select Destination</button>
+                    </div>
+                    
+                    <div class="location-card" data-location="starehe">
+                        <div class="location-name">
+                            <i class="fas fa-city"></i> Starehe
+                        </div>
+                        <div class="location-desc">
+                            Central business district location
+                        </div>
+                        <button class="location-select">Select Destination</button>
+                    </div>
+                    
+                    <div class="location-card" data-location="nyayo-stadium">
+                        <div class="location-name">
+                            <i class="fas fa-futbol"></i> Nyayo Stadium
+                        </div>
+                        <div class="location-desc">
+                            Sports and events venue
+                        </div>
+                        <button class="location-select">Select Destination</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Buses Content -->
+            <div id="buses-content" class="content-section">
+                <div class="welcome-section">
+                    <div class="welcome-text">Available</div>
+                    <div class="user-name">Shuttle Buses</div>
+                </div>
+                
+                <div class="buses-list">
+                    <div class="bus-card">
+                        <div class="bus-icon">
+                            <i class="fas fa-bus"></i>
+                        </div>
+                        <div class="bus-info">
+                            <h3>Shuttle #101</h3>
+                            <p>Afya Center → Tao</p>
+                        </div>
+                        <div class="bus-status status-available">Available</div>
+                    </div>
+                    
+                    <div class="bus-card">
+                        <div class="bus-icon">
+                            <i class="fas fa-bus"></i>
+                        </div>
+                        <div class="bus-info">
+                            <h3>Shuttle #102</h3>
+                            <p>Tao → Kawangware</p>
+                        </div>
+                        <div class="bus-status status-full">Full</div>
+                    </div>
+                    
+                    <div class="bus-card">
+                        <div class="bus-icon">
+                            <i class="fas fa-bus"></i>
+                        </div>
+                        <div class="bus-info">
+                            <h3>Shuttle #103</h3>
+                            <p>Starehe → Nyayo Stadium</p>
+                        </div>
+                        <div class="bus-status status-available">Available</div>
+                    </div>
+                    
+                    <div class="bus-card">
+                        <div class="bus-icon">
+                            <i class="fas fa-bus"></i>
+                        </div>
+                        <div class="bus-info">
+                            <h3>Shuttle #104</h3>
+                            <p>City Center → All Routes</p>
+                        </div>
+                        <div class="bus-status status-coming">Arriving 10min</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Profile Content -->
+            <div id="profile-content" class="content-section">
+                <div class="profile-card">
+                    <div class="profile-header">
+                        <div class="profile-avatar">JD</div>
+                        <div class="profile-details">
+                            <h2>John Doe</h2>
+                            <p>john.doe@email.com</p>
+                            <p>Premium Member since Jan 2023</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-row">
+                        <span class="info-label">Subscription Plan</span>
+                        <span class="info-value">Monthly Pass</span>
+                    </div>
+                    
+                    <div class="info-row">
+                        <span class="info-label">Trips Today</span>
+                        <span class="info-value">1/2 used</span>
+                    </div>
+                    
+                    <div class="info-row">
+                        <span class="info-label">Current Balance</span>
+                        <span class="info-value">Ksh 1,250</span>
+                    </div>
+                    
+                    <div class="info-row">
+                        <span class="info-label">Member Since</span>
+                        <span class="info-value">Jan 2023</span>
+                    </div>
+                </div>
+                
+                <button class="logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Log Out
+                </button>
+            </div>
+            
+            <!-- App Footer -->
+            <div class="app-footer">
+                <p>CITY SHUTTLE &copy; 2023 | Your Urban Connection</p>
+                <p style="margin-top: 5px; font-size: 12px;">City Plus v2.1.4</p>
+            </div>
+        </div>
+
+        <!-- Payment Content -->
+            <div id="payment-content" class="content-section">
+                <div class="welcome-section">
+                    <div class="welcome-text">Payment</div>
+                    <div class="user-name">Options</div>
+                </div>
+                
+                <div class="profile-card">
+                    <div class="info-row">
+                        <span class="info-label">Current Balance</span>
+                        <span class="info-value">Ksh 1,250</span>
+                    </div>
+                    
+                    <div class="info-row">
+                        <span class="info-label">Subscription Plan</span>
+                        <span class="info-value">Monthly Pass</span>
+                    </div>
+                    
+                    <div class="info-row">
+                        <span class="info-label">Next Payment</span>
+                        <span class="info-value">15/12/2023</span>
+                    </div>
+                    
+                    <div class="info-row">
+                        <span class="info-label">Payment Method</span>
+                        <span class="info-value">M-Pesa</span>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin: 20px 0;">
+                    <button class="login-btn" onclick="addFunds()">
+                        <i class="fas fa-plus-circle"></i> Add Funds
+                    </button>
+                    
+                    <button class="login-btn" style="background: linear-gradient(to right, #FF9800, #F57C00); margin-top: 10px;">
+                        <i class="fas fa-sync-alt"></i> Renew Subscription
+                    </button>
+                </div>
+            </div>
+            
+            <!-- KYC Content -->
+            <div id="kyc-content" class="content-section">
+                <div class="welcome-section">
+                    <div class="welcome-text">KYC</div>
+                    <div class="user-name">Verification</div>
+                </div>
+                
+                <div class="profile-card">
+                    <div class="info-row">
+                        <span class="info-label">Status</span>
+                        <span class="info-value" style="color: #FF9800;">Pending</span>
+                    </div>
+                    
+                    <div class="info-row">
+                        <span class="info-label">ID Verification</span>
+                        <span class="info-value">Not Submitted</span>
+                    </div>
+                    
+                    <div class="info-row">
+                        <span class="info-label">Selfie Check</span>
+                        <span class="info-value">Not Submitted</span>
+                    </div>
+                    
+                    <div class="info-row">
+                        <span class="info-label">Started On</span>
+                        <span class="info-value">--/--/----</span>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin: 20px 0;">
+                    <button class="login-btn" onclick="startKYC()">
+                        <i class="fas fa-id-card"></i> Start KYC Verification
+                    </button>
+                    
+                    <p style="color: #4CAF50; font-size: 14px; margin-top: 15px;">
+                        <i class="fas fa-info-circle"></i> Verification usually takes 1-3 business days
+                    </p>
+                </div>
+            </div>
+        
+        <!-- Floating Bottom Navigation -->
+        <div id="floating-nav" class="floating-nav" style="display: none;">
+            <button class="nav-btn active" data-section="home">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </button>
+
+
+                        <!-- Profile Content -->
+            <div id="profile-content" class="content-section">
+                <!-- ... existing profile content ... -->
+            </div>
+            
+            
+            
+            <button class="nav-btn" data-section="locations">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Locations</span>
+            </button>
+            
+            <button class="nav-btn" data-section="buses">
+                <i class="fas fa-bus"></i>
+                <span>Buses</span>
+            </button>
+            
+            <button class="nav-btn" data-section="profile">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Login functionality
+        const loginPanel = document.getElementById('login-panel');
+        const mainApp = document.getElementById('main-app');
+        const floatingNav = document.getElementById('floating-nav');
+        const emailForm = document.getElementById('email-form');
+        const phoneForm = document.getElementById('phone-form');
+        const loginOptions = document.querySelector('.login-form');
+        
+        // Show email form
+        document.getElementById('email-login').addEventListener('click', function() {
+            loginOptions.style.display = 'none';
+            emailForm.style.display = 'block';
+        });
+        
+        // Show phone form
+        document.getElementById('phone-login').addEventListener('click', function() {
+            loginOptions.style.display = 'none';
+            phoneForm.style.display = 'block';
+        });
+        
+        // Back to options from email form
+        document.getElementById('back-to-options').addEventListener('click', function() {
+            emailForm.style.display = 'none';
+            loginOptions.style.display = 'block';
+        });
+        
+        // Back to options from phone form
+        document.getElementById('back-to-options-phone').addEventListener('click', function() {
+            phoneForm.style.display = 'none';
+            loginOptions.style.display = 'block';
+        });
+        
+        // Toggle password visibility
+        document.getElementById('toggle-password').addEventListener('click', function() {
+            const passwordInput = document.getElementById('password-input');
+            const icon = this.querySelector('i');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        });
+        
+        // Toggle phone password visibility
+        document.getElementById('toggle-phone-password').addEventListener('click', function() {
+            const passwordInput = document.getElementById('phone-password');
+            const icon = this.querySelector('i');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        });
+        
+        // Email login submit
+        document.getElementById('email-submit').addEventListener('click', function() {
+            const email = document.getElementById('email-input').value;
+            const password = document.getElementById('password-input').value;
+            
+            if (!email || !password) {
+                alert('Please enter both email and password');
+                return;
+            }
+            
+            // Show loading
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Signing In...';
+            this.disabled = true;
+            
+            // Simulate login process
+            setTimeout(() => {
+                // Successful login
+                loginPanel.style.display = 'none';
+                mainApp.style.display = 'block';
+                floatingNav.style.display = 'flex';
+                
+                // Reset button
+                this.innerHTML = 'Sign In';
+                this.disabled = false;
+            }, 1500);
+        });
+        
+        // Phone login submit
+        document.getElementById('phone-submit').addEventListener('click', function() {
+            const phone = document.getElementById('phone-input').value;
+            const password = document.getElementById('phone-password').value;
+            
+            if (!phone || !password) {
+                alert('Please enter both phone number and password');
+                return;
+            }
+            
+            // Show loading
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Signing In...';
+            this.disabled = true;
+            
+            // Simulate login process
+            setTimeout(() => {
+                // Successful login
+                loginPanel.style.display = 'none';
+                mainApp.style.display = 'block';
+                floatingNav.style.display = 'flex';
+                
+                // Reset button
+                this.innerHTML = 'Sign In';
+                this.disabled = false;
+            }, 1500);
+        });
+        
+        // Google login
+        document.getElementById('google-login').addEventListener('click', function() {
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Connecting...';
+            this.disabled = true;
+            
+            setTimeout(() => {
+                loginPanel.style.display = 'none';
+                mainApp.style.display = 'block';
+                floatingNav.style.display = 'flex';
+                
+                this.innerHTML = 'Continue with Google';
+                this.disabled = false;
+            }, 1500);
+        });
+        
+        // Facebook login
+        document.getElementById('facebook-login').addEventListener('click', function() {
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Connecting...';
+            this.disabled = true;
+            
+            setTimeout(() => {
+                loginPanel.style.display = 'none';
+                mainApp.style.display = 'block';
+                floatingNav.style.display = 'flex';
+                
+                this.innerHTML = 'Continue with Facebook';
+                this.disabled = false;
+            }, 1500);
+        });
+        
+        // Sign up link
+        document.getElementById('signup-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Redirecting to sign up page...');
+        });
+        
+        // Forgot password links
+        document.querySelectorAll('.forgot-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Password reset link will be sent to your email/phone');
+            });
+        });
+        
+        // Floating navigation functionality
+        const navButtons = document.querySelectorAll('.nav-btn');
+        const contentSections = document.querySelectorAll('.content-section');
+        
+        navButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const sectionId = this.getAttribute('data-section') + '-content';
+                
+                // Update active nav button
+                navButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Show selected section
+                contentSections.forEach(section => section.classList.remove('active'));
+                document.getElementById(sectionId).classList.add('active');
+            });
+        });
+        
+        // Location selection
+        document.querySelectorAll('.location-card').forEach(card => {
+            card.addEventListener('click', function() {
+                // Remove active class from all cards
+                document.querySelectorAll('.location-card').forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked card
+                this.classList.add('active');
+                
+                // Store selected location
+                const location = this.getAttribute('data-location');
+                console.log('Selected location:', location);
+            });
+        });
+        
+        // Location select buttons
+        document.querySelectorAll('.location-select').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.stopPropagation(); // Prevent card click
+                const locationCard = this.closest('.location-card');
+                const locationName = locationCard.querySelector('.location-name').textContent;
+                
+                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Setting...';
+                this.disabled = true;
+                
+                setTimeout(() => {
+                    alert(`Destination set to: ${locationName}`);
+                    this.innerHTML = 'Destination Set!';
+                    this.style.background = '#10b981';
+                    
+                    // Switch to buses tab after selection
+                    document.querySelector('.nav-btn[data-section="buses"]').click();
+                    
+                    setTimeout(() => {
+                        this.innerHTML = 'Select Destination';
+                        this.style.background = '#4CAF50';
+                        this.disabled = false;
+                    }, 2000);
+                }, 1000);
+            });
+        });
+
+                // Top navigation functionality
+        function showTopSection(sectionId) {
+            // Hide all content sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId + '-content').classList.add('active');
+            
+            // Update active button
+            document.querySelectorAll('.top-nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent.toLowerCase() === sectionId.toLowerCase()) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            // Also update floating nav if needed
+            if (sectionId === 'home') {
+                document.querySelector('.nav-btn[data-section="home"]').classList.add('active');
+                document.querySelectorAll('.nav-btn:not([data-section="home"])').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+            }
+        }
+        
+        // Add funds function
+        function addFunds() {
+            alert('Redirecting to payment gateway...');
+        }
+        
+        // Start KYC function
+        function startKYC() {
+            alert('Starting KYC verification process...');
+        }
+        
+        // Update valid time
+        function updateValidTime() {
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            const displayHours = hours % 12 || 12;
+            const displayMinutes = minutes.toString().padStart(2, '0');
+            
+            document.getElementById('valid-time').textContent = 
+                `${displayHours}:${displayMinutes} ${ampm}`;
+        }
+        
+        // Update bus statuses periodically
+        function updateBusStatuses() {
+            const statuses = ['available', 'full', 'coming'];
+            const statusClasses = {
+                'available': 'status-available',
+                'full': 'status-full',
+                'coming': 'status-coming'
+            };
+            const statusTexts = {
+                'available': 'Available',
+                'full': 'Full',
+                'coming': 'Arriving'
+            };
+            
+            document.querySelectorAll('.bus-status').forEach(status => {
+                // Randomly change some statuses (for demo)
+                if (Math.random() > 0.7) {
+                    const newStatus = statuses[Math.floor(Math.random() * statuses.length)];
+                    status.className = 'bus-status ' + statusClasses[newStatus];
+                    
+                    if (newStatus === 'coming') {
+                        const minutes = Math.floor(Math.random() * 15) + 5;
+                        status.textContent = `Arriving ${minutes}min`;
+                    } else {
+                        status.textContent = statusTexts[newStatus];
+                    }
+                }
+            });
+        }
+        
+        // Logout function
+        function logout() {
+            if (confirm('Are you sure you want to log out?')) {
+                mainApp.style.display = 'none';
+                floatingNav.style.display = 'none';
+                loginPanel.style.display = 'block';
+                
+                // Reset forms
+                emailForm.style.display = 'none';
+                phoneForm.style.display = 'none';
+                loginOptions.style.display = 'block';
+                
+                // Reset navigation to home
+                navButtons.forEach(btn => btn.classList.remove('active'));
+                document.querySelector('.nav-btn[data-section="home"]').classList.add('active');
+                
+                contentSections.forEach(section => section.classList.remove('active'));
+                document.getElementById('home-content').classList.add('active');
+            }
+        }
+        
+        // Notification function
+        function showNotifications() {
+            alert('You have 2 notifications:\n1. Your trip to Tao is confirmed\n2. New shuttle route available');
+        }
+        
+        // Settings function
+        function showSettings() {
+            alert('Settings menu will open here');
+        }
+        
+        // Initialize
+        updateValidTime();
+        setInterval(updateValidTime, 60000); // Update every minute
+        setInterval(updateBusStatuses, 30000); // Update bus status every 30 seconds
+    </script>
+</body>
+</html>
